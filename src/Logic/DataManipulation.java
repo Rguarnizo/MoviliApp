@@ -21,7 +21,7 @@ import Data.Estacion;
  */
 public class DataManipulation extends Thread {
     
-    Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     
     public static LinkedList<User> listaUsuariosLK;
     public static HashMap<String,User> listaUsuariosHM;
@@ -29,6 +29,7 @@ public class DataManipulation extends Thread {
     public static HashMap<String,Ruta> listaRutasHM;
     public static AVLTree<Ruta> listaRutasAVL;
     public static HashMap<String,Estacion> listaEstacionesHM;
+    public static AVLTree<Estacion> listaEstacionesAVL;
     public static HashMap<String,DoublyLinkedList<Ruta>> realTimeInfo;  
             
     
@@ -43,6 +44,7 @@ public class DataManipulation extends Thread {
         this.listaRutasHM = new HashMap<>();
         this.realTimeInfo = new HashMap<>();
         this.listaEstacionesHM = new HashMap<>();
+        this.listaEstacionesAVL = new AVLTree<>();
     }
     
     
@@ -107,9 +109,9 @@ public class DataManipulation extends Thread {
                 System.out.println ("Verifique que su entrada este en las opciones" + e);
             }
             switch (option) {
-                case 1: analyzeDynamicArray(listaUsuariosDA);
+                case 1: 
                     break;
-                case 2: analyzeLinkedList(listaUsuariosLK);
+                case 2: 
                     break;
                 case 3:
                     break;
@@ -128,137 +130,7 @@ public class DataManipulation extends Thread {
         userDynamicArray.makeEmpty ();
         userLinkedList.makeEmpty ();
     }
-
-    private void analyzeLinkedList (LinkedList<User> userLinkedList) {
-
-        boolean analyzeDA = true;
-
-        while (analyzeDA) {
-            System.out.println ();
-            System.out.println ();
-            System.out.println ("Analisis Linked List");
-            System.out.println ();
-            System.out.println ("Seleccione la cantidad de datos a Analizar:");
-            System.out.println ("1. 10 mil.");
-            System.out.println ("2. 50 mil.");
-            System.out.println ("3. 100 mil.");
-            System.out.println ("4. 500 mil.");
-            System.out.println ("5. 1 million");
-            System.out.println ("6. 10 millones");
-            System.out.println ("7. Salir");
-
-
-            int option = 0;
-
-            try {
-                option = scanner.nextInt ();
-            } catch (Exception e) {
-                System.out.println ("Verifique que su entrada este en las opciones");
-            }
-            long timeLoadData = 0;
-            switch (option) {
-                case 1:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 10000);
-
-                case 2:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 50000);
-
-                case 3:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 100000);
-
-                case 4:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 500000);
-
-                case 5:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 1000000);
-
-                case 6:
-                    timeLoadData = JsonLoadData.loadData (userLinkedList, 10000000);
-
-                case 7:
-                    analyzeDA = false;
-                    break;
-                default:
-                    System.out.println ("Introduzca una opción correcta.");
-                    break;
-
-            }
-            System.out.println ();
-            System.out.println ();
-            System.out.println ("Rendimiento Linked List:");
-            System.out.println ();
-            System.out.println ("Cargar Datos: "+ timeLoadData/1000000  + "ms");
-            System.out.println ("Insertar valor: " + userLinkedList.pushBack (new User ("Prueba","Prueba","Prueba","Prueba","Prueba","Prueba","Prueba"))+"ns");
-            System.out.println ("Actualizar valor(Ultimo):" + userLinkedList.get (userLinkedList.getSize ()-1));
-            System.out.println ("Busqueda por indice (Ultimo): ");
-            System.out.println ("Busqueda por valor (Ultimo): ");
-            System.out.println ("Eliminar Valor(Ultimo): ");
-
-        }
-    }
-
-    private void analyzeDynamicArray (DynamicArray<User> userDynamicArray) {
-
-        boolean analyzeDA = true;
-
-        while (analyzeDA){
-            System.out.println ();
-            System.out.println ();
-            System.out.println ("Analisis Dynamic Array");
-            System.out.println ();
-            System.out.println ("Seleccione la cantidad de datos a Analizar:");
-            System.out.println ("1. 10 mil.");
-            System.out.println ("2. 50 mil.");
-            System.out.println ("3. 100 mil.");
-            System.out.println ("4. 500 mil.");
-            System.out.println ("5. 1 million");
-            System.out.println ("6. 10 millones");
-            System.out.println ("7. Salir");
-
-
-            int option = 0;
-
-            try{
-                option = scanner.nextInt ();
-            }catch (Exception e){
-                System.out.println ("Verifique que su entrada este en las opciones");
-            }
-            long timeLoadData = 0;
-
-            switch (option) {
-                case 1: timeLoadData = JsonLoadData.loadData (userDynamicArray,10000);
-                    break;
-                case 2: timeLoadData = JsonLoadData.loadData (userDynamicArray,50000);
-                    break;
-                case 3: timeLoadData = JsonLoadData.loadData (userDynamicArray,100000);
-                    break;
-                case 4: timeLoadData = JsonLoadData.loadData (userDynamicArray,500000);
-                    break;
-                case 5: timeLoadData = JsonLoadData.loadData (userDynamicArray,1000000);
-                    break;
-                case 6: timeLoadData = JsonLoadData.loadData (userDynamicArray,10000000);
-                    break;
-                case 7: analyzeDA = false;
-                    break;
-                default:
-                    System.out.println ("Introduzca una opción correcta.");
-                    break;
-            }
-            
-            System.out.println ();
-            System.out.println ();
-            System.out.println ("Rendimiento Array Dinamico:");
-            System.out.println ();
-            System.out.println ("Cargar Datos: "+ timeLoadData/1000000  + "ms");
-            System.out.println ("Insertar valor: " + userDynamicArray.push (new User ("Prueba","Prueba","Prueba","Prueba","Prueba","Prueba","Prueba"))+"ns");
-            System.out.println ("Actualizar valor(Ultimo): ");
-            System.out.println ("Busqueda por indice (Ultimo): ");
-            System.out.println ("Busqueda por valor (Ultimo): ");
-            System.out.println ("Eliminar Valor(Ultimo): ");
-
-
-        }
-    }
+    
     private static void visualizateData () {
         for (int i = 0; i < listaUsuariosDA.getSize ();i++){
             System.out.println (listaUsuariosDA.get (i).toString ());
