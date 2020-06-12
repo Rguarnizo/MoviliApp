@@ -7,9 +7,13 @@ package Logic;
 
 import Data.DataStructures.Array.DynamicArray;
 import Data.DataStructures.LinkedList;
+import Data.DataStructures.Trees.AVLTree;
+import Data.Ruta;
 import Data.User;
 import java.util.HashMap;
 import java.util.Scanner;
+import Data.DataStructures.DoublyLinkedList;
+import Data.Estacion;
 
 /**
  *
@@ -22,6 +26,11 @@ public class DataManipulation extends Thread {
     public static LinkedList<User> listaUsuariosLK;
     public static HashMap<String,User> listaUsuariosHM;
     public static DynamicArray<User> listaUsuariosDA;
+    public static HashMap<String,Ruta> listaRutasHM;
+    public static AVLTree<Ruta> listaRutasAVL;
+    public static HashMap<String,Estacion> listaEstacionesHM;
+    public static HashMap<String,DoublyLinkedList<Ruta>> realTimeInfo;  
+            
     
 
     
@@ -30,6 +39,10 @@ public class DataManipulation extends Thread {
         this.listaUsuariosDA = new DynamicArray<>(10);
         this.listaUsuariosHM = new HashMap<>();
         this.listaUsuariosLK = new LinkedList<>();
+        this.listaRutasAVL = new AVLTree<>();
+        this.listaRutasHM = new HashMap<>();
+        this.realTimeInfo = new HashMap<>();
+        this.listaEstacionesHM = new HashMap<>();
     }
     
     
@@ -63,7 +76,7 @@ public class DataManipulation extends Thread {
                     break;
                 case 3: 
                     break;
-                case 4:
+                case 4: visualizateData ();
                     break;
                 case 5: exec =  false;
                     break;
@@ -231,6 +244,7 @@ public class DataManipulation extends Thread {
                     System.out.println ("Introduzca una opción correcta.");
                     break;
             }
+            
             System.out.println ();
             System.out.println ();
             System.out.println ("Rendimiento Array Dinamico:");
@@ -244,6 +258,12 @@ public class DataManipulation extends Thread {
 
 
         }
+    }
+    private static void visualizateData () {
+        for (int i = 0; i < listaUsuariosDA.getSize ();i++){
+            System.out.println (listaUsuariosDA.get (i).toString ());
+        }
+        System.out.println (listaUsuariosDA.getSize ());
     }
     
 }
