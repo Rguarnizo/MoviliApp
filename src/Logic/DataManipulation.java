@@ -5,15 +5,15 @@
  */
 package Logic;
 
-import Data.DataStructures.Array.DynamicArray;
-import Data.DataStructures.LinkedList;
-import Data.DataStructures.Trees.AVLTree;
-import Data.Ruta;
-import Data.User;
+import DataSrc.DataStructures.Array.DynamicArray;
+import DataSrc.DataStructures.LinkedList;
+import DataSrc.DataStructures.Trees.AVLTree;
+import DataSrc.Ruta;
+import DataSrc.User;
 import java.util.HashMap;
 import java.util.Scanner;
-import Data.DataStructures.DoublyLinkedList;
-import Data.Estacion;
+import DataSrc.DataStructures.DoublyLinkedList;
+import DataSrc.Estacion;
 
 /**
  *

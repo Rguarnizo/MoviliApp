@@ -1,6 +1,6 @@
 package GUI;
 
-import Data.User;
+import DataSrc.User;
 import Logic.DataManipulation;
 import javax.swing.JOptionPane;
 
