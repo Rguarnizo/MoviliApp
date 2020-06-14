@@ -5,6 +5,9 @@
  */
 package DataSrc.DataStructures.Trees;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 /**
  *
  * @author Rubén Darío Martínez
@@ -27,8 +30,27 @@ public class AVLTree<T> {
             height = 1;
         }
         
-        //public abstract int compareTo(T o);
+        public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder sb) {
+        if(right!=null) {
+            right.toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, sb);
+        }
+        sb.append(prefix).append(isTail ? "└── " : "┌── ").append(t.toString()).append("\n");
+        if(left!=null) {
+            left.toString(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), true, sb);
+        }
+        return sb;
+}
+
+        @Override
+        public String toString() {
+            StringBuilder string = this.toString(new StringBuilder(), true, new StringBuilder());
+            return string.toString();
+        }
     }
+        
+        
+ 
+    
 
     public void insert(T value) {
         root = insert(root, value);
@@ -147,4 +169,10 @@ public class AVLTree<T> {
             }else return null;
         }
 
+    @Override
+    public String toString() {
+        return root.toString();
+    }
+        
+  
 }

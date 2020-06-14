@@ -31,9 +31,10 @@ public class DataManipulation extends Thread {
     public static HashMap<String,Estacion> listaEstacionesHM;
     public static AVLTree<Estacion> listaEstacionesAVL;
     public static HashMap<String,DoublyLinkedList<Ruta>> realTimeInfo;  
+
+    
             
     
-
     
     public DataManipulation(String msg){
         super(msg);
@@ -59,8 +60,9 @@ public class DataManipulation extends Thread {
             System.out.println ("1.Cargar Datos Necesarios.");
             System.out.println ("2.Cargar Datos Especificos.");
             System.out.println ("3.Analizar Rendimientos.");         
-            System.out.println ("4.Visualizar Data.");
-            System.out.println ("5.Salir");
+            System.out.println ("4.Visualizar Datos.");
+            System.out.println ("5.Limpiar Datos.");
+            System.out.println ("6.Salir");
 
             int option = 0;
 
@@ -76,12 +78,14 @@ public class DataManipulation extends Thread {
                     break;
                 case 2: JsonLoadData.loadDataSpecify();
                     break;
-                case 3: 
+                case 3: analyzeData();
                     break;
                 case 4: visualizateData ();
                     break;
-                case 5: exec =  false;
+                case 5: cleanData();
                     break;
+                case 6: exec =  false;
+                    break;    
                 default:
                     System.out.println ("Introduzca una opción correcta.");
                     break;
@@ -112,15 +116,95 @@ public class DataManipulation extends Thread {
                 System.out.println ("Verifique que su entrada este en las opciones" + e);
             }
             switch (option) {
+                case 1: AnalisisEstructuraUsuario(listaUsuariosDA);
+                    break;
+                case 2: AnalisisEstructuraUsuario(listaUsuariosLK);
+                    break;
+                case 3: AnalisisEstructuraUsuario(listaUsuariosHM);
+                    break;
+                case 4: AnalisisEstructuraRuta(listaRutasAVL);
+                    break;
+                case 5: AnalisisEstructuraRuta(listaRutasHM);
+                    break;
+                case 6: AnalisisEstructuraEstacion(listaEstacionesAVL);
+                    break;
+                case 7: AnalisisEstructuraEstacion(listaEstacionesHM);
+                    break;
+                case 8: analyzeData = false;
+                    break;
+                default:
+                    System.out.println ("Introduzca una opción correcta.");
+                    break;
+            }
+        }
+    }
+    
+ 
+
+    private void cleanData () {
+        this.listaUsuariosDA = new DynamicArray<>(10);
+        this.listaUsuariosHM = new HashMap<>();
+        this.listaUsuariosLK = new LinkedList<>();
+        this.listaRutasAVL = new AVLTree<>();
+        this.listaRutasHM = new HashMap<>();
+        this.realTimeInfo = new HashMap<>();
+        this.listaEstacionesHM = new HashMap<>();
+        this.listaEstacionesAVL = new AVLTree<>();
+    }
+    
+    private static void visualizateData () {
+        boolean analyzeData = true;
+        while (analyzeData){
+            System.out.println ("VISUALIZAR DATOS");
+            System.out.println ("Seleccione una opción para continuar:");
+            System.out.println ("1.Lista Usuarios DynamicArray");
+            System.out.println ("2.Lista Usuarios Linked List");
+            System.out.println ("3.Lista Usuarios Hash Map \n");         
+            System.out.println ("4.Lista Rutas AVL");
+            System.out.println ("5.Lista Rutas HashMap\n");
+            System.out.println ("6.Lista Estaciones AVL");
+            System.out.println ("7.Lista Estaciones HashMap\n");
+            System.out.println("8. SALIR\n");
+
+            int option = 0;
+
+            try {
+                option = scanner.nextInt ();
+                scanner.nextLine ();
+            }catch (Exception e) {
+                System.out.println ("Verifique que su entrada este en las opciones" + e);
+            }
+            switch (option) {
                 case 1: 
+                    if(listaUsuariosDA == null){
+                        System.out.println("La estructura no ha sido creada...");
+                    } else{
+                        for(int i = 0; i < listaUsuariosDA.getSize();i++){
+                            System.out.println(listaUsuariosDA.get(i));
+                        }
+                    }                    
+                    
                     break;
                 case 2: 
+                    if(listaUsuariosLK == null){
+                        System.out.println("La estructura no ha sido creada...");
+                    } else{
+                        for(User user: listaUsuariosLK){
+                            System.out.println(user);
+                        }
+                    }
                     break;
-                case 3:
+                case 3: metodoNoImplementado();                
                     break;
-                case 4: cleanData(listaUsuariosDA,listaUsuariosLK);
+                case 4: System.out.println(listaRutasAVL.toString());
                     break;
-                case 5: analyzeData =  false;
+                case 5: metodoNoImplementado();                
+                    break;
+                case 6: System.out.println(listaEstacionesAVL.toString());                
+                    break;
+                case 7: metodoNoImplementado();
+                    break;
+                case 8: analyzeData = false;
                     break;
                 default:
                     System.out.println ("Introduzca una opción correcta.");
@@ -129,16 +213,42 @@ public class DataManipulation extends Thread {
         }
     }
 
-    private void cleanData (DynamicArray<User> userDynamicArray, LinkedList<User> userLinkedList) {
-        userDynamicArray.makeEmpty ();
-        userLinkedList.makeEmpty ();
-    }
     
-    private static void visualizateData () {
-        for (int i = 0; i < listaUsuariosDA.getSize ();i++){
-            System.out.println (listaUsuariosDA.get (i).toString ());
-        }
-        System.out.println (listaUsuariosDA.getSize ());
-    }
     
+    
+  
+
+    private void AnalisisEstructuraUsuario(DynamicArray<User> listaUsuariosDA) {
+        cleanData();
+        
+    }
+
+    private void AnalisisEstructuraUsuario(LinkedList<User> listaUsuariosLK) {
+        
+    }
+
+    private void AnalisisEstructuraUsuario(HashMap<String, User> listaUsuariosHM) {
+        
+    }
+
+    private void AnalisisEstructuraRuta(AVLTree<Ruta> listaRutasAVL) {
+        
+    }
+
+    private void AnalisisEstructuraRuta(HashMap<String, Ruta> listaRutasHM) {
+        
+    }
+
+    private void AnalisisEstructuraEstacion(AVLTree<Estacion> listaEstacionesAVL) {
+        
+    }
+
+    private void AnalisisEstructuraEstacion(HashMap<String, Estacion> listaEstacionesHM) {
+        
+    }
+
+    private static void metodoNoImplementado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
