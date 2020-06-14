@@ -385,7 +385,7 @@ public class DataManipulation extends Thread {
         try{
         for(int i = 0; i< dataSizes.length;i++){
             resultTimesAllData[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
-            Ruta rutaPrueba = new Ruta("Prueba","Prueba","Prueba");
+            Ruta rutaPrueba = new Ruta("ZZZZZZZ","Prueba","Prueba");
             
             long initTime = System.nanoTime();
             listaRutasAVL.insert(rutaPrueba);
@@ -460,7 +460,7 @@ public class DataManipulation extends Thread {
         for(int i = 0; i< dataSizes.length;i++){
             resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
             
-            Estacion estacionPrueba = new Estacion("Prueba", i, i, i, i);
+            Estacion estacionPrueba = new Estacion("ZZZZZZZ", i, i, i, i);
             
             long initTime = System.nanoTime();
             listaEstacionesAVL.insert(estacionPrueba);

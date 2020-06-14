@@ -41,7 +41,7 @@ public class JsonLoadData {
         long initLoadData =0;
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
+            Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
@@ -70,7 +70,7 @@ public class JsonLoadData {
         long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
+            Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
@@ -98,7 +98,7 @@ public class JsonLoadData {
         long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
+            Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
@@ -128,9 +128,9 @@ public class JsonLoadData {
         try {
             Object obj;
             if(dataSize == 0){
-                 obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Rutas\\RutasTM.json")));
+                 obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM.json")));
             } else {
-                 obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Rutas\\RutasTM%d.json",dataSize)));
+                 obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
             initLoadData = System.nanoTime (); 
@@ -157,9 +157,9 @@ public class JsonLoadData {
         try {
             Object obj;
             if(dataSize == 0){
-              obj  = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Estaciones\\EstacionesTM.json")));
+              obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM.json")));
             }else{
-                obj  = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
+                obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
 
@@ -241,9 +241,9 @@ public class JsonLoadData {
         try {
             Object obj;
             if(dataSize == 0){
-                 obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Rutas\\RutasTM.json")));
+                 obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM.json")));
             } else {
-                 obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Rutas\\RutasTM%d.json",dataSize)));
+                 obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
 
@@ -272,9 +272,9 @@ public class JsonLoadData {
         try {
             Object obj;
             if(dataSize == 0){
-              obj  = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Estaciones\\EstacionesTM.json")));
+              obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM.json")));
             }else{
-                obj  = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
+                obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
 

@@ -1,0 +1,22 @@
+Analisis Estructura   Sun Jun 14 18:02:04 COT 2020
+ 
+Insertar 10000 Datos: 31 milliSeg 
+Insertar un dato con 10000 datos insertados: 500 NanoSeg 
+Buscar un dato: 377200 milliSeg 
+Consultar todos los datos: 303900 milliSeg 
+ 
+Insertar 100000 Datos: 192 milliSeg 
+Insertar un dato con 100000 datos insertados: 1700 NanoSeg 
+Buscar un dato: 3232700 milliSeg 
+Consultar todos los datos: 41990300 milliSeg 
+ 
+Insertar 500000 Datos: 269 milliSeg 
+Insertar un dato con 500000 datos insertados: 1700 NanoSeg 
+Buscar un dato: 16333900 milliSeg 
+Consultar todos los datos: 14977600 milliSeg 
+ 
+Insertar 1000000 Datos: 6763 milliSeg 
+Insertar un dato con 1000000 datos insertados: 1900 NanoSeg 
+Buscar un dato: 32483100 milliSeg 
+Consultar todos los datos: 33923400 milliSeg 
+ 
