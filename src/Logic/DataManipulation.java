@@ -217,128 +217,175 @@ public class DataManipulation extends Thread {
     private void AnalisisEstructuraUsuario(DynamicArray<User> listaUsuariosDA) {
         
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosDA, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosDA, dataSizes[i]);
+            long initTime = System.nanoTime();
+            listaUsuariosDA.push(new User());
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
-        }
-
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
+        }        
+        
     }
 
     private void AnalisisEstructuraUsuario(LinkedList<User> listaUsuariosLK) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosLK, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosLK, dataSizes[i]);
+            long initTime = System.nanoTime();
+            listaUsuariosLK.pushBack(new User());
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-       for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+       for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
         }
         
     }
 
     private void AnalisisEstructuraUsuario(HashMap<String, User> listaUsuariosHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosHM, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosHM, dataSizes[i]);
+            long initTime = System.nanoTime();
+            DataManipulation.listaUsuariosHM.put("Prueba",new User());
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
+            cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
         }
     }
 
     private void AnalisisEstructuraRuta(AVLTree<Ruta> listaRutasAVL) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
+            long initTime = System.nanoTime();
+            listaRutasAVL.insert(new Ruta("Prueba","Prueba","Prueba"));
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
+            
         }
     }
 
     private void AnalisisEstructuraRuta(HashMap<String, Ruta> listaRutasHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataRutas(listaRutasHM, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataRutas(listaRutasHM, dataSizes[i]);
+            
+            long initTime = System.nanoTime();
+            listaRutasHM.put("Prueba",new Ruta("Prueba","Prueba","Prueba"));
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
         }
     }
 
     private void AnalisisEstructuraEstacion(AVLTree<Estacion> listaEstacionesAVL) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            long initTime = System.nanoTime();
+            listaEstacionesAVL.insert(new Estacion("Prueba", i, i, 1, 1));
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = initTime - finalTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
         }
     }
 
     private void AnalisisEstructuraEstacion(HashMap<String, Estacion> listaEstacionesHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimes[] = new long[4];
+        long resultTimesAllData[] = new long[4];
+        long resultTimesOneData[] = new long[4];
         
+        
+        //Inserción De Todos los datos!
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimes[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
+            resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
+            long initTime = System.nanoTime();
+            listaEstacionesHM.put("Prueba",new Estacion("Prueba", i, i, 1, 1));
+            long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             cleanData();
         }
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
-        for(int i = 0;i < resultTimes.length;i++){
-            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        for(int i = 0;i < resultTimesAllData.length;i++){
+            System.out.println(String.format("Tiempo Inserción de %d datos:" + resultTimesAllData[i]/1000000 + " milliseg ",dataSizes[i] ));
+            System.out.println(String.format("Tiempo inserción un solo dato con %d datos introducidos: " + resultTimesOneData[i] + " nanoSeg \n",dataSizes[i]));
         }
     }
 
