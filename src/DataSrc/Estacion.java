@@ -35,7 +35,7 @@ public class Estacion implements Comparable<Estacion> {
         this.Nombre = Nombre;
     }
     
-     public Estacion(String Nombre, int Nvagones, int NEntradas, long latitude, long longitude) {
+     public Estacion(String Nombre, int Nvagones, int NEntradas, float latitude, float longitude) {
         this.Nombre = Nombre;
         this.Nvagones = Nvagones;
         this.NEntradas = NEntradas;

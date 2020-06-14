@@ -27,9 +27,9 @@ public class JsonLoadData {
         System.out.println("Datos cargados con Exito.\n");
         
          System.out.println("El tiempo de carga de las estructuras fue: \n");
-         System.out.println("Usuarios HashMap: " + timeCargaUsuarios);
-         System.out.println("Rutas HashMap: " + timeCargaRutas);
-         System.out.println("Estaciones HashMap: " + timeCargaEstaciones + "n"+ "\n");
+         System.out.println("Usuarios HashMap: " + timeCargaUsuarios/1000000 + " milliseg");
+         System.out.println("Rutas HashMap: " + timeCargaRutas/1000000 + " milliseg");
+         System.out.println("Estaciones HashMap: " + timeCargaEstaciones/1000000 + " milliseg" + "\n");
          
     }
 
@@ -38,13 +38,14 @@ public class JsonLoadData {
 
     public static long loadDataUser (DynamicArray<User> userDynamicArray, int dataSize){
 
-        long initLoadData = System.nanoTime ();
+        long initLoadData =0;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
@@ -66,13 +67,14 @@ public class JsonLoadData {
     }
 
     public static long loadDataUser (LinkedList<User> userLinkedList, int dataSize){
-        long initLoadData = System.nanoTime ();
+        long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
@@ -93,13 +95,14 @@ public class JsonLoadData {
     }
     
     public static long loadDataUser (HashMap<String,User> userHashMap, int dataSize){
-        long initLoadData = System.nanoTime ();
+        long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\User\\%d.json",dataSize)));
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
@@ -120,7 +123,7 @@ public class JsonLoadData {
     }
     
     public static long loadDataRutas (HashMap<String,Ruta> userHashMap,int dataSize){
-        long initLoadData = System.nanoTime ();
+        long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj;
@@ -130,7 +133,7 @@ public class JsonLoadData {
                  obj = parser.parse (new FileReader (String.format ("C:\\Users\\Ruben\\Documents\\NetBeansProjects\\MoviliApp\\Data\\Rutas\\RutasTM%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
-
+            initLoadData = System.nanoTime (); 
             System.out.println (jsonArray.size ());
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
@@ -149,7 +152,7 @@ public class JsonLoadData {
     
 
     private static long loadDataEstaciones(HashMap<String, Estacion> listaEstacionesHM,int dataSize) {
-       long initLoadData = System.nanoTime ();
+       long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj;
@@ -161,6 +164,7 @@ public class JsonLoadData {
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
@@ -207,19 +211,19 @@ public class JsonLoadData {
             int cantidadDatos = scanner.nextInt();
 
             switch (option) {
-                case 1: System.out.println("Tiempo Carga Usuarios DynamicArray: "+ loadDataUser(DataManipulation.listaUsuariosDA, cantidadDatos));
+                case 1: System.out.println("Tiempo Carga Usuarios DynamicArray: "+ loadDataUser(DataManipulation.listaUsuariosDA, cantidadDatos)/1000000 +" milliseg");
                     break;
-                case 2: System.out.println("Tiempo Carga Usuarios LinkedList: "+ loadDataUser(DataManipulation.listaUsuariosLK, cantidadDatos));
+                case 2: System.out.println("Tiempo Carga Usuarios LinkedList: "+ loadDataUser(DataManipulation.listaUsuariosLK, cantidadDatos)/1000000 +" milliseg");
                     break;
-                case 3: System.out.println("Tiempo Carga Usuarios HashMap: " +loadDataUser(DataManipulation.listaUsuariosHM,cantidadDatos));
+                case 3: System.out.println("Tiempo Carga Usuarios HashMap: " +loadDataUser(DataManipulation.listaUsuariosHM,cantidadDatos)/1000000 +" milliseg");
                     break;
-                case 4: System.out.println("Tiempo Carga Rutas:" + loadDataRutas(DataManipulation.listaRutasAVL,cantidadDatos));              
+                case 4: System.out.println("Tiempo Carga Rutas AVLTree: " + loadDataRutas(DataManipulation.listaRutasAVL,cantidadDatos)/1000000 +" milliseg");             
                     break;
-                case 5: System.out.println("Tiempo Carga Rutas:" + loadDataRutas(DataManipulation.listaRutasHM,cantidadDatos));
+                case 5: System.out.println("Tiempo Carga Rutas HashMap: " + loadDataRutas(DataManipulation.listaRutasHM,cantidadDatos)/1000000 +" milliseg");
                     break;
-                case 6: System.out.println("Tiempo Carga Estaciones AVLTree: " +loadDataEstaciones(DataManipulation.listaEstacionesAVL,cantidadDatos));
+                case 6: System.out.println("Tiempo Carga Estaciones AVLTree: " +loadDataEstaciones(DataManipulation.listaEstacionesAVL,cantidadDatos)/1000000 +" milliseg");
                     break;
-                case 7: System.out.println("Tiempo Carga Estaciones HashMap:" + loadDataEstaciones(DataManipulation.listaEstacionesHM,cantidadDatos));
+                case 7: System.out.println("Tiempo Carga Estaciones HashMap: " + loadDataEstaciones(DataManipulation.listaEstacionesHM,cantidadDatos)/1000000 +" milliseg");
                     break;                 
                 case 8: exec =  false;
                     break;
@@ -231,7 +235,8 @@ public class JsonLoadData {
     }
 
       private static long loadDataRutas(AVLTree<Ruta> listaRutasAVL,int dataSize){
-          long initLoadData = System.nanoTime ();
+         
+          long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj;
@@ -243,7 +248,8 @@ public class JsonLoadData {
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
-            for(int i = 0; i < 600000;i++){
+             initLoadData = System.nanoTime ();
+            for(int i = 0; i < jsonArray.size();i++){
             //for(int i = 0; i < jsonArray.size ();i++){
             
                 JSONObject jsonObject = (JSONObject) jsonArray.get (1);
@@ -263,7 +269,7 @@ public class JsonLoadData {
       }
     
       private static long loadDataEstaciones(AVLTree<Estacion> listaEstacionesAVL,int dataSize){
-          long initLoadData = System.nanoTime ();
+          long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
             Object obj;
@@ -275,6 +281,7 @@ public class JsonLoadData {
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
             for(int i = 0; i < jsonArray.size ();i++){
                 JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
@@ -283,7 +290,7 @@ public class JsonLoadData {
                 float Latitude =  Float.parseFloat(jsonObject.get("Latitud").toString());
                 float Longitude = Float.parseFloat(jsonObject.get("Longitud").toString());
 
-                listaEstacionesAVL.insert(new Estacion(Nombre, NVagones,NEntradas, initLoadData, initLoadData));
+                listaEstacionesAVL.insert(new Estacion(Nombre, NVagones,NEntradas,Latitude,Longitude));
             }
         }catch (Exception e){
             e.printStackTrace ();
