@@ -212,39 +212,134 @@ public class DataManipulation extends Thread {
             }
         }
     }
-
     
-    
-    
-  
-
+ 
     private void AnalisisEstructuraUsuario(DynamicArray<User> listaUsuariosDA) {
-        cleanData();
         
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
+        
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosDA, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
+
     }
 
     private void AnalisisEstructuraUsuario(LinkedList<User> listaUsuariosLK) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
+        
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosLK, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+       for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
         
     }
 
     private void AnalisisEstructuraUsuario(HashMap<String, User> listaUsuariosHM) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
         
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataUser(listaUsuariosHM, dataSizes[i]);
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
     }
 
     private void AnalisisEstructuraRuta(AVLTree<Ruta> listaRutasAVL) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
         
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
     }
 
     private void AnalisisEstructuraRuta(HashMap<String, Ruta> listaRutasHM) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
         
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataRutas(listaRutasHM, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
     }
 
     private void AnalisisEstructuraEstacion(AVLTree<Estacion> listaEstacionesAVL) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
         
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
     }
 
     private void AnalisisEstructuraEstacion(HashMap<String, Estacion> listaEstacionesHM) {
+        int dataSizes[] = {10000,100000,500000,1000000};
+        long resultTimes[] = new long[4];
         
+        try{
+        for(int i = 0; i< dataSizes.length;i++){
+            resultTimes[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
+            cleanData();
+        }
+        }catch(Exception e){
+            System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
+        }
+        
+        for(int i = 0;i < resultTimes.length;i++){
+            System.out.println(String.format("Analisis con %d datos:" + resultTimes[i]/1000000 + " milliseg \n",dataSizes[i] ));
+        }
     }
 
     private static void metodoNoImplementado() {

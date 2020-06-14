@@ -151,7 +151,7 @@ public class JsonLoadData {
     }
     
 
-    private static long loadDataEstaciones(HashMap<String, Estacion> listaEstacionesHM,int dataSize) {
+    public static long loadDataEstaciones(HashMap<String, Estacion> listaEstacionesHM,int dataSize) {
        long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
@@ -234,7 +234,7 @@ public class JsonLoadData {
         }
     }
 
-      private static long loadDataRutas(AVLTree<Ruta> listaRutasAVL,int dataSize){
+      public static long loadDataRutas(AVLTree<Ruta> listaRutasAVL,int dataSize){
          
           long initLoadData = 0;
         JSONParser parser = new JSONParser();
@@ -249,18 +249,16 @@ public class JsonLoadData {
 
             System.out.println (jsonArray.size ());
              initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size();i++){
-            //for(int i = 0; i < jsonArray.size ();i++){
+            for(int i = 0; i < jsonArray.size ();i++){
             
-                JSONObject jsonObject = (JSONObject) jsonArray.get (1);
+                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
                  
                
-                listaRutasAVL.insert(new Ruta(String.valueOf(i),Origen,Destino));
+                listaRutasAVL.insert(new Ruta(Nombre,Origen,Destino));
                }
-        //    }
         }catch (Exception e){
             e.printStackTrace ();
         }
@@ -268,7 +266,7 @@ public class JsonLoadData {
         return finishLoadData-initLoadData;
       }
     
-      private static long loadDataEstaciones(AVLTree<Estacion> listaEstacionesAVL,int dataSize){
+      public static long loadDataEstaciones(AVLTree<Estacion> listaEstacionesAVL,int dataSize){
           long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
