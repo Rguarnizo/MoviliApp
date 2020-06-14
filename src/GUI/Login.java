@@ -104,8 +104,15 @@ public class Login extends javax.swing.JFrame {
 
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
         // TODO add your handling code here:
+        
+        
         if(DataManipulation.listaUsuariosHM.containsKey(User.getText())){
-            if(DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText())){
+            if(DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText()) &&
+                    DataManipulation.listaUsuariosHM.get(User.getText()).getTrabajador()){
+                new Worker(DataManipulation.listaUsuariosHM.get(User.getText())).setVisible(true);
+                dispose();
+            }else if
+            (DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText())){
                 new Main().setVisible(true);
                 dispose();
             }else{

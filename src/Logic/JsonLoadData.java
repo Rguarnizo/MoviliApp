@@ -55,7 +55,7 @@ public class JsonLoadData {
                 String cedula= jsonObject.get ("cedula").toString ();
                 String anionac = jsonObject.get ("anionac").toString ();
 
-                userDynamicArray.push (new User (nombre,apellido,email,password,telephone,cedula,anionac));
+                userDynamicArray.push (new User (nombre,apellido,email,password,telephone,cedula,anionac,false));
             }
         }catch (Exception e){
             e.printStackTrace ();
@@ -83,7 +83,7 @@ public class JsonLoadData {
                 String cedula= jsonObject.get ("cedula").toString ();
                 String anionac = jsonObject.get ("anionac").toString ();
 
-                userLinkedList.pushBack (new User (nombre,apellido,email,password,telephone,cedula,anionac));
+                userLinkedList.pushBack (new User (nombre,apellido,email,password,telephone,cedula,anionac,false));
             }
         }catch (Exception e){
             e.printStackTrace ();
@@ -207,19 +207,19 @@ public class JsonLoadData {
             int cantidadDatos = scanner.nextInt();
 
             switch (option) {
-                case 1: loadDataUser(DataManipulation.listaUsuariosDA, cantidadDatos);
+                case 1: System.out.println("Tiempo Carga Usuarios DynamicArray: "+ loadDataUser(DataManipulation.listaUsuariosDA, cantidadDatos));
                     break;
-                case 2: loadDataUser(DataManipulation.listaUsuariosLK, cantidadDatos);
+                case 2: System.out.println("Tiempo Carga Usuarios LinkedList: "+ loadDataUser(DataManipulation.listaUsuariosLK, cantidadDatos));
                     break;
-                case 3: loadDataUser(DataManipulation.listaUsuariosHM,cantidadDatos);
+                case 3: System.out.println("Tiempo Carga Usuarios HashMap: " +loadDataUser(DataManipulation.listaUsuariosHM,cantidadDatos));
                     break;
-                case 4: loadDataRutas(DataManipulation.listaRutasAVL,cantidadDatos);              
+                case 4: System.out.println("Tiempo Carga Rutas:" + loadDataRutas(DataManipulation.listaRutasAVL,cantidadDatos));              
                     break;
-                case 5: loadDataRutas(DataManipulation.listaRutasHM,cantidadDatos);
+                case 5: System.out.println("Tiempo Carga Rutas:" + loadDataRutas(DataManipulation.listaRutasHM,cantidadDatos));
                     break;
-                case 6: loadDataEstaciones(DataManipulation.listaEstacionesAVL,cantidadDatos);
+                case 6: System.out.println("Tiempo Carga Estaciones AVLTree: " +loadDataEstaciones(DataManipulation.listaEstacionesAVL,cantidadDatos));
                     break;
-                case 7: loadDataEstaciones(DataManipulation.listaEstacionesHM,cantidadDatos);
+                case 7: System.out.println("Tiempo Carga Estaciones HashMap:" + loadDataEstaciones(DataManipulation.listaEstacionesHM,cantidadDatos));
                     break;                 
                 case 8: exec =  false;
                     break;
@@ -243,14 +243,18 @@ public class JsonLoadData {
             JSONArray jsonArray = (JSONArray) obj;
 
             System.out.println (jsonArray.size ());
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < 600000;i++){
+            //for(int i = 0; i < jsonArray.size ();i++){
+            
+                JSONObject jsonObject = (JSONObject) jsonArray.get (1);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
-
-                listaRutasAVL.insert(new Ruta(Nombre,Origen,Destino));
-            }
+                 
+               
+                listaRutasAVL.insert(new Ruta(String.valueOf(i),Origen,Destino));
+               }
+        //    }
         }catch (Exception e){
             e.printStackTrace ();
         }

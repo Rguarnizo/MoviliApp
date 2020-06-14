@@ -1,5 +1,12 @@
 package GUI;
 
+import DataSrc.DataStructures.DoublyLinkedList;
+import DataSrc.DataStructures.LinkedList;
+import DataSrc.Ruta;
+import DataSrc.User;
+import Logic.DataManipulation;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +23,7 @@ public class Worker extends javax.swing.JFrame {
     /**
      * Creates new form Worker
      */
-    public Worker() {
+    public Worker(User usuarioActivo) {
         initComponents();
         this.setLocationRelativeTo(null);
         transparenciaButton();
@@ -64,7 +71,7 @@ public class Worker extends javax.swing.JFrame {
         ProximaEstacion = new javax.swing.JLabel();
         NumeroPasajeros = new javax.swing.JLabel();
         TiempoTranscurrido = new javax.swing.JLabel();
-        NombreEstacion = new javax.swing.JLabel();
+        NombreRutaView = new javax.swing.JLabel();
         NombreRuta = new javax.swing.JTextField();
         Terminar = new javax.swing.JButton();
         Cambiar = new javax.swing.JButton();
@@ -77,20 +84,22 @@ public class Worker extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ProximaEstacion.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
-        ProximaEstacion.setText("Proxima Estación Aquí.");
-        getContentPane().add(ProximaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 740, 260, 30));
+        ProximaEstacion.setText("No asignada.");
+        getContentPane().add(ProximaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 740, 250, 30));
 
         NumeroPasajeros.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
-        NumeroPasajeros.setText("Numeros pasajeros");
-        getContentPane().add(NumeroPasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 20));
+        NumeroPasajeros.setForeground(new java.awt.Color(153, 153, 153));
+        NumeroPasajeros.setText("0");
+        getContentPane().add(NumeroPasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, 20));
 
         TiempoTranscurrido.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
-        TiempoTranscurrido.setText("Tiempo Transcurrido");
-        getContentPane().add(TiempoTranscurrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
+        TiempoTranscurrido.setForeground(new java.awt.Color(153, 153, 153));
+        TiempoTranscurrido.setText("00:00:00");
+        getContentPane().add(TiempoTranscurrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
 
-        NombreEstacion.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
-        NombreEstacion.setText("NOMBRE RUTA");
-        getContentPane().add(NombreEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 100, -1));
+        NombreRutaView.setFont(new java.awt.Font("Rubik", 1, 48)); // NOI18N
+        NombreRutaView.setText("---");
+        getContentPane().add(NombreRutaView, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 110, 80));
 
         NombreRuta.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
         NombreRuta.setForeground(new java.awt.Color(61, 61, 61));
@@ -160,15 +169,34 @@ public class Worker extends javax.swing.JFrame {
 
     private void CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarActionPerformed
         // TODO add your handling code here:
+        if(DataManipulation.listaRutasHM.containsKey(NombreRuta.getText())){
+            NombreRutaView.setText(NombreRuta.getText());
+        }else {
+            JOptionPane.showMessageDialog(null, "Ruta Inexistente, coloque una ruta correcta");
+        }
     }//GEN-LAST:event_CambiarActionPerformed
 
     private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
         // TODO add your handling code here:
+        if(DataManipulation.realTimeInfo.containsKey(NombreRutaView.getText())){
+            
+            DoublyLinkedList<Ruta> realtime= DataManipulation.realTimeInfo.get(NombreRutaView.getText());           
+            realtime.PushBack(DataManipulation.listaRutasHM.get(NombreRutaView.getText()));
+            
+        } else {
+            
+            DataManipulation.realTimeInfo.put(NombreRutaView.getText(), new DoublyLinkedList<>());
+            //Agrega la listaEnlazada a el HashMap
+            
+            DoublyLinkedList<Ruta> realtime= DataManipulation.realTimeInfo.get(NombreRutaView.getText());
+            realtime.PushBack(DataManipulation.listaRutasHM.get(NombreRutaView.getText()));
+            
+        }
     }//GEN-LAST:event_IniciarActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        new Main().setVisible(true);
+        new Login().setVisible(true);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
 
@@ -206,7 +234,7 @@ public class Worker extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Worker().setVisible(true);
+                new Worker(new User()).setVisible(true);
             }
         });
     }
@@ -216,8 +244,8 @@ public class Worker extends javax.swing.JFrame {
     private javax.swing.JButton Cambiar;
     private javax.swing.JButton Config;
     private javax.swing.JButton Iniciar;
-    private javax.swing.JLabel NombreEstacion;
     private javax.swing.JTextField NombreRuta;
+    private javax.swing.JLabel NombreRutaView;
     private javax.swing.JLabel NumeroPasajeros;
     private javax.swing.JLabel ProximaEstacion;
     private javax.swing.JButton Terminar;

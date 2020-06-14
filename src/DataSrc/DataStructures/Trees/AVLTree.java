@@ -12,6 +12,7 @@ package DataSrc.DataStructures.Trees;
 public class AVLTree<T> {
     
     private AVLNode<T> root;
+    private int numberNodes;
     
 
     private static class AVLNode<T> {
@@ -36,6 +37,7 @@ public class AVLTree<T> {
     private AVLNode<T> insert(AVLNode<T> n, T v) {
         if (n == null) {
             n = new AVLNode<T>(v);
+            this.numberNodes++;
             return n;
         } else {
             int k = ((Comparable) n.t).compareTo(v);
@@ -144,6 +146,5 @@ public class AVLTree<T> {
                 return find (value,actualNode.left);
             }else return null;
         }
-
 
 }

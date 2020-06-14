@@ -54,6 +54,7 @@ public class Register extends javax.swing.JFrame {
         Apellidos = new javax.swing.JTextField();
         Registrar = new javax.swing.JButton();
         Back = new javax.swing.JButton();
+        Trabajador = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -159,6 +160,16 @@ public class Register extends javax.swing.JFrame {
         });
         getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 50));
 
+        Trabajador.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        Trabajador.setForeground(new java.awt.Color(255, 255, 255));
+        Trabajador.setText("Trabajador");
+        Trabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrabajadorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Trabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 780, -1, 40));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Register.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -206,9 +217,11 @@ public class Register extends javax.swing.JFrame {
                     new User(Nombres.getText(),
                             Apellidos.getText(),
                             Correo.getText(),
-                            Contraseña.getText(), 
+                            Contraseña.getText(),
+                            Telefono.getText(), 
                             Cedula.getText(),
-                            Nacimiento.getText()));
+                            Nacimiento.getText(),Trabajador.isEnabled()));
+            
             JOptionPane.showMessageDialog(null,"Usuario creado con exito");
             new Login().setVisible(true);
             dispose();
@@ -221,6 +234,10 @@ public class Register extends javax.swing.JFrame {
         new Login().setVisible(true);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
+
+    private void TrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrabajadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TrabajadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +284,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField Nombres;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField Telefono;
+    private javax.swing.JCheckBox Trabajador;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

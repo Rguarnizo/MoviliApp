@@ -16,7 +16,7 @@ public class User {
 
 
 
-    public User(String name, String lastName, String email, String password, String telephone, String cedula, String bornDate) {
+    public User(String name, String lastName, String email, String password, String telephone, String cedula, String bornDate,boolean Trabajador) {
         this.nombre = name;
         this.apellido = lastName;
         this.email = email;
@@ -24,6 +24,7 @@ public class User {
         this.telefono = telephone;
         this.cedula = cedula;
         this.anionac = bornDate;
+        this.Trabajador = Trabajador;
     }
 
     public User(){

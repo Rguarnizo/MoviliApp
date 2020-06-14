@@ -62,11 +62,13 @@ public class DoublyLinkedList <T> extends  LinkedList<T> implements Serializable
             Node2B2 pushItem = new Node2B2(value);
             this.head = pushItem;
             this.tail = pushItem;
+            size++;
         } else{
             Node2B2 pushItem = new Node2B2(value);
             this.head.previous = pushItem;
             pushItem.next = this.head;
             this.head = pushItem;
+            size++;
         }
     }
     
@@ -74,13 +76,15 @@ public class DoublyLinkedList <T> extends  LinkedList<T> implements Serializable
         if(size == 0){
            Node2B2 pushItem = new Node2B2(value);
            this.head = pushItem;
-           this.tail = pushItem;          
+           this.tail = pushItem; 
+           this.size++;
         } else{
             Node2B2 pushItem = new Node2B2(value);
             pushItem.previous = this.tail;
             
             this.tail.next = pushItem;
             this.tail = pushItem;
+            size++;
         }
     }
 

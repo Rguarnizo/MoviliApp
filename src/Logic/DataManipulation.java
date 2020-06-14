@@ -58,7 +58,7 @@ public class DataManipulation extends Thread {
             System.out.println ("Seleccione una opción para continuar:");
             System.out.println ("1.Cargar Datos Necesarios.");
             System.out.println ("2.Cargar Datos Especificos.");
-            System.out.println ("3.Analizar Datos.");         
+            System.out.println ("3.Analizar Rendimientos.");         
             System.out.println ("4.Visualizar Data.");
             System.out.println ("5.Salir");
 
@@ -92,13 +92,16 @@ public class DataManipulation extends Thread {
     public  void analyzeData () {
         boolean analyzeData = true;
         while (analyzeData){
-            System.out.println ("Analizar Data");
+            System.out.println ("ANALISIS RENDIMIENTO");
             System.out.println ("Seleccione una opción para continuar:");
-            System.out.println ("1.Analisis DynamicArray.");
-            System.out.println ("2.Analisis LinkedList.");
-            System.out.println ("3.Redimiento Comparado.");
-            System.out.println ("4.Limpiar Datos");
-            System.out.println ("5.Salir");
+            System.out.println ("1.Lista Usuarios DynamicArray");
+            System.out.println ("2.Lista Usuarios Linked List");
+            System.out.println ("3.Lista Usuarios Hash Map \n");         
+            System.out.println ("4.Lista Rutas AVL");
+            System.out.println ("5.Lista Rutas HashMap\n");
+            System.out.println ("6.Lista Estaciones AVL");
+            System.out.println ("7.Lista Estaciones HashMap\n");
+            System.out.println("8. SALIR\n");
 
             int option = 0;
 
