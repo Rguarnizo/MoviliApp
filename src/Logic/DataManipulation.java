@@ -37,6 +37,35 @@ public class DataManipulation extends Thread {
     public static AVLTree<Estacion> listaEstacionesAVL;
     public static HashMap<String,DoublyLinkedList<Ruta>> realTimeInfo;  
 
+    private static void ImprimirTodas() {
+         System.out.println("LISTA USUARIOS DYNAMIC ARRAY\n");
+                    if(listaUsuariosDA == null){
+                        System.out.println("La estructura no ha sido creada...");
+                    } else{
+                        for(int i = 0; i < listaUsuariosDA.getSize();i++){
+                            System.out.println(listaUsuariosDA.get(i));
+                        }
+                    }                    
+                    System.out.println("LISTA USUARIOS LINKED LIST\n");
+                    
+                
+                    if(listaUsuariosLK == null){
+                        System.out.println("La estructura no ha sido creada...");
+                    } else{
+                        for(User user: listaUsuariosLK){
+                            System.out.println(user);
+                        }
+                    }                   
+                System.out.println("LISTA USUARIOS HASHMAP (NO IMPLEMENTADO) \n");
+                System.out.println("LISTA RUTAS AVLTREE \n");
+                System.out.println(listaRutasAVL.toString());
+                System.out.println("LISTA RUTAS HASHMAP (NO IMPLEMENTADO) \n");
+                   
+                System.out.println(listaEstacionesAVL.toString());                
+                System.out.println("LISTA ESTACIONES HASHMAP (NO IMPLEMENTADO) \n");
+                    
+    }
+
     
             
     
@@ -110,7 +139,8 @@ public class DataManipulation extends Thread {
             System.out.println ("5.Lista Rutas HashMap\n");
             System.out.println ("6.Lista Estaciones AVL");
             System.out.println ("7.Lista Estaciones HashMap\n");
-            System.out.println("8. SALIR\n");
+            System.out.println("8.Analisis de todas las estructuras.");
+            System.out.println("9. SALIR\n");
 
             int option = 0;
 
@@ -135,7 +165,9 @@ public class DataManipulation extends Thread {
                     break;
                 case 7: AnalisisEstructuraEstacion(listaEstacionesHM);
                     break;
-                case 8: analyzeData = false;
+                case 8: AnalisisTotal();
+                    break;
+                case 9: analyzeData = false;
                     break;
                 default:
                     System.out.println ("Introduzca una opción correcta.");
@@ -169,7 +201,8 @@ public class DataManipulation extends Thread {
             System.out.println ("5.Lista Rutas HashMap\n");
             System.out.println ("6.Lista Estaciones AVL");
             System.out.println ("7.Lista Estaciones HashMap\n");
-            System.out.println("8. SALIR\n");
+            System.out.println("8.Imprimir Todas las estructuras\n");
+            System.out.println("9. SALIR\n");
 
             int option = 0;
 
@@ -209,8 +242,9 @@ public class DataManipulation extends Thread {
                     break;
                 case 7: metodoNoImplementado();
                     break;
-                case 8: analyzeData = false;
+                case 8: ImprimirTodas(); 
                     break;
+                case 9:    analyzeData = false;
                 default:
                     System.out.println ("Introduzca una opción correcta.");
                     break;
@@ -323,12 +357,12 @@ public class DataManipulation extends Thread {
             resultTimesOneData[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosLK.get(dataSizes[i]);
+            listaUsuariosHM.get("Prueba");
             finalTime = System.nanoTime();
             resultTimesFindData[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosLK.get(dataSizes[i]);
+            listaUsuariosHM.get("EstaClaveNoDeberiaDeEstar");
             finalTime = System.nanoTime();
             resultTimesConsultAll[i] = finalTime - initTime;
             
@@ -356,6 +390,7 @@ public class DataManipulation extends Thread {
             long initTime = System.nanoTime();
             listaRutasAVL.insert(rutaPrueba);
             long finalTime = System.nanoTime();
+            resultTimesOneData[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaRutasAVL.find(rutaPrueba);
@@ -424,10 +459,25 @@ public class DataManipulation extends Thread {
         try{
         for(int i = 0; i< dataSizes.length;i++){
             resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            
+            Estacion estacionPrueba = new Estacion("Prueba", i, i, i, i);
+            
             long initTime = System.nanoTime();
-            listaEstacionesAVL.insert(new Estacion("Prueba", i, i, 1, 1));
+            listaEstacionesAVL.insert(estacionPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = initTime - finalTime;
+            resultTimesOneData[i] = finalTime-initTime;
+            
+             initTime = System.nanoTime();
+            listaEstacionesAVL.find(estacionPrueba);
+            finalTime = System.nanoTime();
+            resultTimesFindData[i] = finalTime - initTime;
+            
+            initTime = System.nanoTime();
+            listaEstacionesAVL.toString();
+            finalTime = System.nanoTime();
+            resultTimesConsultAll[i] = finalTime - initTime;
+            
+             
             cleanData();
         }
         EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaEstacionesAVLTree.txt");
@@ -516,6 +566,16 @@ public class DataManipulation extends Thread {
 
     private static void metodoNoImplementado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void AnalisisTotal() {
+                    AnalisisEstructuraUsuario(listaUsuariosDA);
+                    AnalisisEstructuraUsuario(listaUsuariosLK);
+                    AnalisisEstructuraUsuario(listaUsuariosHM);
+                    AnalisisEstructuraRuta(listaRutasAVL);
+                    AnalisisEstructuraRuta(listaRutasHM);
+                    AnalisisEstructuraEstacion(listaEstacionesAVL);
+                    AnalisisEstructuraEstacion(listaEstacionesHM);
     }
 
 }
