@@ -366,6 +366,8 @@ public class DataManipulation extends Thread {
             finalTime = System.nanoTime();
             resultTimesConsultAll[i] = finalTime - initTime;
             
+                 
+            cleanData();
         }
         EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaUsuariosHashMap.txt");
         }catch(Exception e){
@@ -503,7 +505,7 @@ public class DataManipulation extends Thread {
             listaEstacionesHM.put("Prueba",new Estacion("Prueba", i, i, 1, 1));
             long finalTime = System.nanoTime();
             resultTimesOneData[i] = finalTime - initTime;
-            cleanData();
+            
             
             initTime = System.nanoTime();
             listaEstacionesHM.get("Prueba");
@@ -514,6 +516,7 @@ public class DataManipulation extends Thread {
             listaEstacionesHM.containsKey("NoDeberiaEstarEstaKey");
             finalTime = System.nanoTime();
             resultTimesConsultAll[i] = finalTime - initTime;
+            cleanData();
         }
         EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaEstacionesHashMap.txt");
         }catch(Exception e){
@@ -544,11 +547,11 @@ public class DataManipulation extends Thread {
         for(int i= 0;i < insertAll.length;i++){           
             bw.write(String.format("Insertar %d Datos: " + insertAll[i]/1000000 + " milliSeg \n",dataSizes[i]));
             bw.write(String.format("Insertar un dato con %d datos insertados: " + insertOne[i] + " NanoSeg \n",dataSizes[i]));
-            bw.write(String.format("Buscar un dato: " + searchOne[i]+ " milliSeg \n",dataSizes[i]));
-            bw.write(String.format("Consultar todos los datos: " + consultAll[i] + " milliSeg \n \n",dataSizes[i]));
+            bw.write(String.format("Buscar un dato: " + searchOne[i]+ " NanoSeg \n",dataSizes[i]));
+            bw.write(String.format("Consultar todos los datos: " + consultAll[i]/1000000 + " milliSeg \n \n",dataSizes[i]));
         }
        
-        System.out.println("información agregada al archivo de texto!");
+        System.out.println("información agregada al archivo de texto! \n");
     } catch (IOException e) {
         e.printStackTrace();
     } finally {
