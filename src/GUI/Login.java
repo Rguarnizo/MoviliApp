@@ -111,8 +111,7 @@ public class Login extends javax.swing.JFrame {
                     DataManipulation.listaUsuariosHM.get(User.getText()).getTrabajador()){
                 new Worker(DataManipulation.listaUsuariosHM.get(User.getText())).setVisible(true);
                 dispose();
-            }else if
-            (DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText())){
+            }else if(DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText())){
                 new Main().setVisible(true);
                 dispose();
             }else{

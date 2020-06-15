@@ -220,7 +220,7 @@ public class Register extends javax.swing.JFrame {
                             Contraseña.getText(),
                             Telefono.getText(), 
                             Cedula.getText(),
-                            Nacimiento.getText(),Trabajador.isEnabled()));
+                            Nacimiento.getText(),Trabajador.isSelected()));
             
             JOptionPane.showMessageDialog(null,"Usuario creado con exito");
             new Login().setVisible(true);

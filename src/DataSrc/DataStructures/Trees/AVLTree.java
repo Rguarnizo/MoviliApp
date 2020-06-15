@@ -147,25 +147,27 @@ public class AVLTree<T> {
             }else return findMin (actualNode.left);
         }
         
-        public AVLNode<T> find(T value){
+        public T find(T value){
             if(root == null){
                 return null;
             }else return find (value,root);
         }
+        
 
-        public  AVLNode<T> find(T value, AVLNode<T> actualNode){
+        public  T find(T value, AVLNode<T> actualNode){
 
             if(actualNode == null){
                 return null;
             }
             int lessOrGreater = ((Comparable)actualNode.t).compareTo(value);
+            
 
             if(lessOrGreater == 0){
-                return actualNode;
+                return actualNode.t;
             }else if(lessOrGreater > 0){
-                return find (value,actualNode.right);
-            }else if (lessOrGreater < 0){
                 return find (value,actualNode.left);
+            }else if (lessOrGreater < 0){
+                return find (value,actualNode.right);
             }else return null;
         }
 

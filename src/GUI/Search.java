@@ -1,5 +1,10 @@
 package GUI;
 
+import DataSrc.Estacion;
+import DataSrc.Ruta;
+import Logic.DataManipulation;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -45,40 +50,42 @@ public class Search extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PuntoPartida = new javax.swing.JTextField();
-        PuntoPartida1 = new javax.swing.JTextField();
+        BuscarEstacion = new javax.swing.JTextField();
+        BuscarRuta = new javax.swing.JTextField();
         MasCercana = new javax.swing.JButton();
         Back = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
+        ResultadoBusqueadaRuta = new javax.swing.JLabel();
+        ResultadoBusqueadaEstacion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PuntoPartida.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
-        PuntoPartida.setForeground(new java.awt.Color(61, 61, 61));
-        PuntoPartida.setToolTipText("User");
-        PuntoPartida.setBorder(null);
-        PuntoPartida.setSelectedTextColor(new java.awt.Color(87, 81, 81));
-        PuntoPartida.addActionListener(new java.awt.event.ActionListener() {
+        BuscarEstacion.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        BuscarEstacion.setForeground(new java.awt.Color(61, 61, 61));
+        BuscarEstacion.setToolTipText("User");
+        BuscarEstacion.setBorder(null);
+        BuscarEstacion.setSelectedTextColor(new java.awt.Color(87, 81, 81));
+        BuscarEstacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PuntoPartidaActionPerformed(evt);
+                BuscarEstacionActionPerformed(evt);
             }
         });
-        getContentPane().add(PuntoPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 180, 20));
+        getContentPane().add(BuscarEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 180, 20));
 
-        PuntoPartida1.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
-        PuntoPartida1.setForeground(new java.awt.Color(61, 61, 61));
-        PuntoPartida1.setToolTipText("User");
-        PuntoPartida1.setBorder(null);
-        PuntoPartida1.setSelectedTextColor(new java.awt.Color(87, 81, 81));
-        PuntoPartida1.addActionListener(new java.awt.event.ActionListener() {
+        BuscarRuta.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        BuscarRuta.setForeground(new java.awt.Color(61, 61, 61));
+        BuscarRuta.setToolTipText("User");
+        BuscarRuta.setBorder(null);
+        BuscarRuta.setSelectedTextColor(new java.awt.Color(87, 81, 81));
+        BuscarRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PuntoPartida1ActionPerformed(evt);
+                BuscarRutaActionPerformed(evt);
             }
         });
-        getContentPane().add(PuntoPartida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 180, 20));
+        getContentPane().add(BuscarRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 180, 20));
 
         MasCercana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MasCercana.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +109,15 @@ public class Search extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 200, 50));
+        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 200, 50));
+
+        ResultadoBusqueadaRuta.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
+        ResultadoBusqueadaRuta.setForeground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(ResultadoBusqueadaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 340, 30));
+
+        ResultadoBusqueadaEstacion.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
+        ResultadoBusqueadaEstacion.setForeground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(ResultadoBusqueadaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 350, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Search.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -110,13 +125,13 @@ public class Search extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PuntoPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuntoPartidaActionPerformed
+    private void BuscarEstacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEstacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PuntoPartidaActionPerformed
+    }//GEN-LAST:event_BuscarEstacionActionPerformed
 
-    private void PuntoPartida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuntoPartida1ActionPerformed
+    private void BuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarRutaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PuntoPartida1ActionPerformed
+    }//GEN-LAST:event_BuscarRutaActionPerformed
 
     private void MasCercanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MasCercanaActionPerformed
         // TODO add your handling code here:
@@ -130,6 +145,45 @@ public class Search extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
+        if(DataManipulation.listaEstacionesHM == null){
+        if(BuscarRuta.getText().isEmpty() && BuscarEstacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese la ruta o la estación a buscar");
+        } else{
+           Ruta ruta = DataManipulation.listaRutasAVL.find(new Ruta(BuscarRuta.getText()));
+           if(ruta == null){
+               JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
+           } else{
+               ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
+           }
+           
+           Estacion estacion = DataManipulation.listaEstacionesAVL.find(new Estacion(BuscarEstacion.getText()));
+          
+           if(estacion == null){
+               JOptionPane.showMessageDialog(null, "Estacion no encontrada...");
+           } else{
+               ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
+           }
+        }
+        }else {
+            if(BuscarRuta.getText().isEmpty() && BuscarEstacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese la ruta o la estación a buscar");
+        } else{
+           Ruta ruta = DataManipulation.listaRutasHM.get(BuscarRuta.getText());
+           if(ruta == null){
+               JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
+           } else{
+               ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
+           }
+           
+           Estacion estacion = DataManipulation.listaEstacionesHM.get(BuscarEstacion.getText());
+          
+           if(estacion == null){
+               JOptionPane.showMessageDialog(null, "Estacion no encontrada...");
+           } else{
+               ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
+           }
+        }
+        }
     }//GEN-LAST:event_BuscarActionPerformed
 
     /**
@@ -170,9 +224,11 @@ public class Search extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Buscar;
+    private javax.swing.JTextField BuscarEstacion;
+    private javax.swing.JTextField BuscarRuta;
     private javax.swing.JButton MasCercana;
-    private javax.swing.JTextField PuntoPartida;
-    private javax.swing.JTextField PuntoPartida1;
+    private javax.swing.JLabel ResultadoBusqueadaEstacion;
+    private javax.swing.JLabel ResultadoBusqueadaRuta;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
