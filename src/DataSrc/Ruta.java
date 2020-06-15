@@ -16,6 +16,7 @@ public class Ruta implements Comparable<Ruta> {
     
     String nombre;
     
+    
     int numParadas;
     byte Linea;
     
@@ -25,8 +26,27 @@ public class Ruta implements Comparable<Ruta> {
     String destino;
     
     Node2B2 realTimeInfo;
+    User conductor;
     long latitude;
     long longitude;
+    int numPersonas;
+
+    public Ruta(String nombre,User conductor,Node2B2 realTimeInfo, long latitude, long longitude, int numPersonas) {
+        this.nombre = nombre;
+        this.realTimeInfo = realTimeInfo;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.numPersonas = numPersonas;
+        this.conductor = conductor;
+    }
+
+    public Ruta(String nombre, User conductor, long latitude, long longitude, int numPersonas) {
+        this.nombre = nombre;
+        this.conductor = conductor;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.numPersonas = numPersonas;
+    }
   
 
 

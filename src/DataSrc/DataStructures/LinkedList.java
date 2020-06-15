@@ -83,6 +83,8 @@ public class LinkedList <T> implements Iterable<T>, Serializable {
             return index;
         }
     }
+    
+   
 
     public T remove( int index ){
         checkIndex(index);

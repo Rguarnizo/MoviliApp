@@ -2,9 +2,13 @@ package GUI;
 
 import DataSrc.DataStructures.DoublyLinkedList;
 import DataSrc.DataStructures.LinkedList;
+import DataSrc.DataStructures.Node2B2;
 import DataSrc.Ruta;
 import DataSrc.User;
 import Logic.DataManipulation;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,10 +27,50 @@ public class Worker extends javax.swing.JFrame {
     /**
      * Creates new form Worker
      */
+    
+    User conductor;
+    Ruta rutaActual;
+    Node2B2 identificador;
+    boolean EnFuncionamiento;
+    
+    
+    private Timer t;
+    private int h, m, s, cs;
+    private ActionListener acciones = new ActionListener(){
+    
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            ++s;
+            if(s==60) 
+            {
+                s = 0;
+                ++m;
+            }
+            if(m==60)
+            {
+                m = 0;
+                ++h;
+            }
+            actualizarLabel();
+        }
+
+    };
+     
+
+        private void actualizarLabel() {
+           String tiempo = (h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+(s<=9?"0":"")+s;
+            TiempoTranscurrido.setText(tiempo);
+        }
+        
+
+            
+            
     public Worker(User usuarioActivo) {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(Back);
         transparenciaButton();
+        t = new Timer(1000,acciones);
+        this.conductor = usuarioActivo;
     }
     
     public void transparenciaButton(){
@@ -164,40 +208,77 @@ public class Worker extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreRutaActionPerformed
 
     private void TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerminarActionPerformed
-        // TODO add your handling code here:
+        if(EnFuncionamiento){
+            DoublyLinkedList<Ruta> rutasInfo = DataManipulation.realTimeInfo.get(NombreRutaView.getText());
+            if(rutasInfo.getHead().equals(identificador)){
+                rutasInfo.popFront();
+                JOptionPane.showMessageDialog(null, "Ruta Terminada con exito! Gracias.");
+                t.stop();
+                resetTimer();
+                EnFuncionamiento = false;
+            }else if(rutasInfo.getTail().equals(identificador)){
+                rutasInfo.popBack();
+                JOptionPane.showMessageDialog(null, "Ruta Terminada con exito! Gracias.");
+                t.stop();
+                resetTimer();
+                EnFuncionamiento = false;
+            }else{
+                JOptionPane.showMessageDialog(null, "No puedes terminar la ruta, no eres el primer bus o el ultimo");
+            }
+        }else{
+        JOptionPane.showMessageDialog(null, "Inicia una ruta primero...");
+        }
     }//GEN-LAST:event_TerminarActionPerformed
 
     private void CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarActionPerformed
         // TODO add your handling code here:
+        if(EnFuncionamiento){
+         JOptionPane.showMessageDialog(null,"Termina la ruta actual para poder cambiarla.");   
+        }else {
         if(DataManipulation.listaRutasHM.containsKey(NombreRuta.getText())){
             NombreRutaView.setText(NombreRuta.getText());
         }else {
             JOptionPane.showMessageDialog(null, "Ruta Inexistente, coloque una ruta correcta");
         }
+        }
     }//GEN-LAST:event_CambiarActionPerformed
 
     private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
         // TODO add your handling code here:
-        if(DataManipulation.realTimeInfo.containsKey(NombreRutaView.getText())){
+        
+        if(EnFuncionamiento){
+            JOptionPane.showMessageDialog(null,"Ruta en progreso... Terminar si desea iniciar otra.");
+        } else if(NombreRutaView.getText().equals("---")){
+            JOptionPane.showMessageDialog(null, "Coloque una ruta valida antes de comenzar");
+        }else if(DataManipulation.realTimeInfo.containsKey(NombreRutaView.getText())){ 
+            
+            rutaActual = new Ruta(NombreRutaView.getText(),conductor,20502,50218,1);
+            identificador = new Node2B2(rutaActual);
+            rutaActual.setRealTimeInfo(identificador);
             
             DoublyLinkedList<Ruta> realtime= DataManipulation.realTimeInfo.get(NombreRutaView.getText());           
-            realtime.PushBack(DataManipulation.listaRutasHM.get(NombreRutaView.getText()));
-            
+            realtime.PushBack(rutaActual.getRealTimeInfo());
+            EnFuncionamiento = true;
+            t.start();
         } else {
             
             DataManipulation.realTimeInfo.put(NombreRutaView.getText(), new DoublyLinkedList<>());
             //Agrega la listaEnlazada a el HashMap
+            rutaActual = new Ruta(NombreRutaView.getText(),conductor,20502,50218,1);
+            identificador = new Node2B2(rutaActual);
+            rutaActual.setRealTimeInfo(identificador);
             
             DoublyLinkedList<Ruta> realtime= DataManipulation.realTimeInfo.get(NombreRutaView.getText());
-            realtime.PushBack(DataManipulation.listaRutasHM.get(NombreRutaView.getText()));
-            
+            realtime.PushBack(rutaActual.getRealTimeInfo());
+            EnFuncionamiento = true;
+            t.start();
         }
     }//GEN-LAST:event_IniciarActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
-        dispose();
+        pack();
     }//GEN-LAST:event_BackActionPerformed
 
     private void ConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigActionPerformed
@@ -252,4 +333,11 @@ public class Worker extends javax.swing.JFrame {
     private javax.swing.JLabel TiempoTranscurrido;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    private void resetTimer() {
+        h = 0;
+        s = 0;
+        m = 0;
+        TiempoTranscurrido.setText("00:00:00");
+    }
 }
