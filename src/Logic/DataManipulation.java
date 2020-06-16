@@ -13,7 +13,10 @@ import DataSrc.User;
 import java.util.HashMap;
 import java.util.Scanner;
 import DataSrc.DataStructures.DoublyLinkedList;
+import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
+import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;
+import static Logic.DataManipulation.colaPrioridadRuta;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -36,7 +39,27 @@ public class DataManipulation extends Thread {
     public static HashMap<String,Estacion> listaEstacionesHM;
     public static AVLTree<Estacion> listaEstacionesAVL;
     public static HashMap<String,DoublyLinkedList<Ruta>> realTimeInfo;  
+    public static PriorityQueueEstaciones colaPrioridadEstaciones;
+    public static RutasPriorityQueue colaPrioridadRuta;
 
+    
+    
+    
+    
+    public DataManipulation(String msg){
+        super(msg);
+        this.listaUsuariosDA = new DynamicArray<>(10);
+        this.listaUsuariosHM = new HashMap<>();
+        this.listaUsuariosLK = new LinkedList<>();
+        this.listaRutasAVL = new AVLTree<>();
+        this.listaRutasHM = new HashMap<>();
+        this.realTimeInfo = new HashMap<>();
+        this.listaEstacionesHM = new HashMap<>();
+        this.listaEstacionesAVL = new AVLTree<>();
+        this.colaPrioridadEstaciones = new PriorityQueueEstaciones(150);
+        this.colaPrioridadRuta = new RutasPriorityQueue(150);
+    }
+    
     private static void ImprimirTodas() {
          System.out.println("LISTA USUARIOS DYNAMIC ARRAY\n");
                     if(listaUsuariosDA == null){
@@ -66,21 +89,7 @@ public class DataManipulation extends Thread {
                     
     }
 
-    
-            
-    
-    
-    public DataManipulation(String msg){
-        super(msg);
-        this.listaUsuariosDA = new DynamicArray<>(10);
-        this.listaUsuariosHM = new HashMap<>();
-        this.listaUsuariosLK = new LinkedList<>();
-        this.listaRutasAVL = new AVLTree<>();
-        this.listaRutasHM = new HashMap<>();
-        this.realTimeInfo = new HashMap<>();
-        this.listaEstacionesHM = new HashMap<>();
-        this.listaEstacionesAVL = new AVLTree<>();
-    }
+ 
     
     
     public void run(){
@@ -187,6 +196,9 @@ public class DataManipulation extends Thread {
         this.realTimeInfo = new HashMap<>();
         this.listaEstacionesHM = new HashMap<>();
         this.listaEstacionesAVL = new AVLTree<>();
+        this.colaPrioridadEstaciones = new PriorityQueueEstaciones(10);
+        this.colaPrioridadRuta = new RutasPriorityQueue(10);
+        
     }
     
     private static void visualizateData () {

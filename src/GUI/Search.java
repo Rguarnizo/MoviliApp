@@ -93,7 +93,7 @@ public class Search extends javax.swing.JFrame {
                 MasCercanaActionPerformed(evt);
             }
         });
-        getContentPane().add(MasCercana, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 720, 200, 50));
+        getContentPane().add(MasCercana, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, 220, 60));
 
         Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +219,7 @@ public class Search extends javax.swing.JFrame {
                 new Search().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

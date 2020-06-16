@@ -7,12 +7,13 @@ package DataSrc;
 
 import DataSrc.DataStructures.Array.DynamicArray;
 import DataSrc.DataStructures.Node2B2;
+import java.util.Comparator;
 
 /**
  *
  * @author Rubén Darío Martínez
  */
-public class Ruta implements Comparable<Ruta> {
+public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
     
     String nombre;
     
@@ -25,11 +26,16 @@ public class Ruta implements Comparable<Ruta> {
     String origen;
     String destino;
     
+    int numUserWaiting;
+    
     Node2B2 realTimeInfo;
+    
     User conductor;
     long latitude;
     long longitude;
     int numPersonas;
+    
+   
 
     public Ruta(String nombre,User conductor,Node2B2 realTimeInfo, long latitude, long longitude, int numPersonas) {
         this.nombre = nombre;
@@ -49,7 +55,9 @@ public class Ruta implements Comparable<Ruta> {
     }
   
 
-
+    public void aumentarPrioridad(){
+        this.numUserWaiting++;
+    }
 
     public Ruta(String nombre, int numParadas, byte Linea, DynamicArray<Estacion> paradas) {
         this.nombre = nombre;
@@ -69,6 +77,34 @@ public class Ruta implements Comparable<Ruta> {
     public Ruta(String nombre) {
         this.nombre = nombre;
         this.realTimeInfo = null;
+    }
+
+    public Ruta(int MAX_VALUE) {
+        this.numUserWaiting = MAX_VALUE;                
+    }
+
+    public int getNumUserWaiting() {
+        return numUserWaiting;
+    }
+
+    public void setNumUserWaiting(int numUserWaiting) {
+        this.numUserWaiting = numUserWaiting;
+    }
+
+    public User getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(User conductor) {
+        this.conductor = conductor;
+    }
+
+    public int getNumPersonas() {
+        return numPersonas;
+    }
+
+    public void setNumPersonas(int numPersonas) {
+        this.numPersonas = numPersonas;
     }
 
     public String getOrigen() {
@@ -169,9 +205,16 @@ public class Ruta implements Comparable<Ruta> {
         }
     }
     
+
+    @Override
+    public int compare(Ruta R1, Ruta R2) {
+            if(R1.numUserWaiting == R2.numUserWaiting){
+                return 0;
+            } else if(R1.numUserWaiting > R2.numUserWaiting){
+                return 1;
+            }else {
+                return -1;
+            }
+    }
    
-    
-    
-    
-    
 }

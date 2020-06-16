@@ -22,6 +22,8 @@ public class Estacion implements Comparable<Estacion> {
     int NTaquillas;
     int NEntradas;
     
+    int NUsuarios;
+    
     int Bolardos;
     
     String Zona;
@@ -51,6 +53,20 @@ public class Estacion implements Comparable<Estacion> {
         this.NEntradas = NEntradas;
         this.Bolardos = Bolardos;
         this.Zona = Zona;
+    }
+
+    public Estacion(int NUsuarios) {
+        this.NUsuarios = NUsuarios;
+    }
+    
+    
+
+    public int getNUsuarios() {
+        return NUsuarios;
+    }
+
+    public void setNUsuarios(int NUsuarios) {
+        this.NUsuarios = NUsuarios;
     }
     
     
@@ -117,6 +133,10 @@ public class Estacion implements Comparable<Estacion> {
         }else{
             return -1;
         }
+    }
+
+    public void aumentarPrioridad() {
+        this.NUsuarios++;
     }
     
     

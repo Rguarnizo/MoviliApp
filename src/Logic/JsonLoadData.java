@@ -5,6 +5,8 @@ import DataSrc.User;
 import DataSrc.DataStructures.Array.DynamicArray;
 import DataSrc.DataStructures.LinkedList;
 import DataSrc.DataStructures.Trees.AVLTree;
+import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
+import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;
 import DataSrc.Ruta;
 import org.json.simple.JSONArray;
@@ -23,7 +25,6 @@ public class JsonLoadData {
         long timeCargaUsuarios = loadDataUser(DataManipulation.listaUsuariosHM,10000);
         long timeCargaRutas = loadDataRutas(DataManipulation.listaRutasHM,0);
         long timeCargaEstaciones = loadDataEstaciones(DataManipulation.listaEstacionesHM,0);
-                   
         System.out.println("Datos cargados con Exito.\n");
         
          System.out.println("El tiempo de carga de las estructuras fue: \n");
@@ -141,7 +142,10 @@ public class JsonLoadData {
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
 
-                userHashMap.put(Nombre,new Ruta(Nombre,Origen,Destino));
+                
+                Ruta ruta = new Ruta(Nombre,Origen,Destino);
+                userHashMap.put(Nombre,ruta);
+                DataManipulation.colaPrioridadRuta.insert(ruta);
             }
         }catch (Exception e){
             e.printStackTrace ();
@@ -172,8 +176,10 @@ public class JsonLoadData {
                 int NEntradas  = Integer.parseInt(jsonObject.get("NEntradas").toString());
                 float Latitude =  Float.parseFloat(jsonObject.get("Latitud").toString());
                 float Longitude = Float.parseFloat(jsonObject.get("Longitud").toString());
-
-                DataManipulation.listaEstacionesHM.put(Nombre,new Estacion(Nombre, NVagones,NEntradas, initLoadData, initLoadData));
+                
+                Estacion estacion = new Estacion(Nombre, NVagones,NEntradas, initLoadData, initLoadData);
+                listaEstacionesHM.put(Nombre,estacion);
+                DataManipulation.colaPrioridadEstaciones.insert(estacion);
             }
         }catch (Exception e){
             e.printStackTrace ();
@@ -256,8 +262,9 @@ public class JsonLoadData {
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
                  
-               
-                listaRutasAVL.insert(new Ruta(Nombre,Origen,Destino));
+                Ruta ruta = new Ruta(Nombre,Origen,Destino);
+                listaRutasAVL.insert(ruta);
+                DataManipulation.colaPrioridadRuta.insert(ruta);
                }
         }catch (Exception e){
             e.printStackTrace ();
@@ -287,8 +294,9 @@ public class JsonLoadData {
                 int NEntradas  = Integer.parseInt(jsonObject.get("NEntradas").toString());
                 float Latitude =  Float.parseFloat(jsonObject.get("Latitud").toString());
                 float Longitude = Float.parseFloat(jsonObject.get("Longitud").toString());
-
-                listaEstacionesAVL.insert(new Estacion(Nombre, NVagones,NEntradas,Latitude,Longitude));
+                Estacion estacion = new Estacion(Nombre, NVagones,NEntradas,Latitude,Longitude);
+                listaEstacionesAVL.insert(estacion);
+                DataManipulation.colaPrioridadEstaciones.insert(estacion);
             }
         }catch (Exception e){
             e.printStackTrace ();
@@ -296,4 +304,6 @@ public class JsonLoadData {
         long finishLoadData = System.nanoTime ();
         return finishLoadData-initLoadData;
       }
+
+    
 }
