@@ -67,6 +67,14 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
         this.paradas = new ArrayList();
         this.realTimeInfo = null;
     }
+
+    public ArrayList<Ruta> getParadas() {
+        return paradas;
+    }
+
+    public void setParadas(ArrayList<Ruta> paradas) {
+        this.paradas = paradas;
+    }
     
     public Ruta(String nombre, String origen, String destino) {
         this.nombre = nombre;

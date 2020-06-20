@@ -88,7 +88,8 @@ public class PriorityQueueEstaciones{
         if(this.maxsize == size){
             this.maxsize*=2;
             Estacion[] tempArray = new Estacion[this.maxsize+1];
-            for(int i=0;i<=this.size;i++){
+            tempArray[0] = new Estacion(Integer.MAX_VALUE);
+            for(int i=1;i<=this.size;i++){
                 tempArray[i] = this.Heap[i];
             }
             this.Heap = tempArray;

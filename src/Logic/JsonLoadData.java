@@ -328,7 +328,7 @@ public class JsonLoadData {
                 
                 JSONArray arrayRutas = (JSONArray) jsonObject.get("ListaParadas");
                 for(int j = 0;j<arrayRutas.size();j++){
-                    rutaPut.getParadas().add(arrayRutas.get(j).toString());                            
+                    rutaPut.getParadas().add(new Ruta(arrayRutas.get(j).toString()));                            
                 }
                 DataManipulation.listaRutasHM.put(Nombre,rutaPut);
                 
