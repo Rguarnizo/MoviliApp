@@ -86,7 +86,12 @@ public class PriorityQueueEstaciones{
     { 
         
         if(this.maxsize == size){
-            duplicateSize();
+            this.maxsize*=2;
+            Estacion[] tempArray = new Estacion[this.maxsize+1];
+            for(int i=0;i<=this.size;i++){
+                tempArray[i] = this.Heap[i];
+            }
+            this.Heap = tempArray;
         }
         Heap[++size] = element; 
  
@@ -141,6 +146,6 @@ public class PriorityQueueEstaciones{
 
     private void duplicateSize() {
         this.Heap = Arrays.copyOf(Heap,maxsize*2);
-        this.maxsize = maxsize*2;
+        this.maxsize = size*2;
     }
 }

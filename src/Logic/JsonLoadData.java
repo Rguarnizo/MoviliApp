@@ -17,6 +17,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
+import org.json.simple.JsonObject;
 
 public class JsonLoadData {
     
@@ -297,6 +298,41 @@ public class JsonLoadData {
                 Estacion estacion = new Estacion(Nombre, NVagones,NEntradas,Latitude,Longitude);
                 listaEstacionesAVL.insert(estacion);
                 DataManipulation.colaPrioridadEstaciones.insert(estacion);
+            }
+        }catch (Exception e){
+            e.printStackTrace ();
+        }
+        long finishLoadData = System.nanoTime ();
+        return finishLoadData-initLoadData;
+      }
+      
+      public static long loadDataAll(int dataSize){
+          long initLoadData = 0;
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj;
+            if(dataSize == 0){
+              obj  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListEsta.json")));
+            }else{
+                obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
+            }
+            JSONArray jsonArray = (JSONArray) obj;
+
+            System.out.println (jsonArray.size ());
+            initLoadData = System.nanoTime ();
+            for(int i = 0; i < jsonArray.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+                
+                String Nombre= jsonObject.get ("Ruta").toString ();
+                Ruta rutaPut = new Ruta(Nombre);
+                
+                JSONArray arrayRutas = (JSONArray) jsonObject.get("ListaParadas");
+                for(int j = 0;j<arrayRutas.size();j++){
+                    rutaPut.getParadas().add(arrayRutas.get(j).toString());                            
+                }
+                DataManipulation.listaRutasHM.put(Nombre,rutaPut);
+                
+                
             }
         }catch (Exception e){
             e.printStackTrace ();

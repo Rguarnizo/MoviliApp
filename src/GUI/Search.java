@@ -55,6 +55,8 @@ public class Search extends javax.swing.JFrame {
         MasCercana = new javax.swing.JButton();
         Back = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaEstaciones = new javax.swing.JList<>();
         ResultadoBusqueadaRuta = new javax.swing.JLabel();
         ResultadoBusqueadaEstacion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -111,13 +113,22 @@ public class Search extends javax.swing.JFrame {
         });
         getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 200, 50));
 
+        ListaEstaciones.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListaEstaciones);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 250, -1));
+
         ResultadoBusqueadaRuta.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
         ResultadoBusqueadaRuta.setForeground(new java.awt.Color(204, 204, 204));
         getContentPane().add(ResultadoBusqueadaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 340, 30));
 
         ResultadoBusqueadaEstacion.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
         ResultadoBusqueadaEstacion.setForeground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(ResultadoBusqueadaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 350, 30));
+        getContentPane().add(ResultadoBusqueadaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 350, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Search.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -154,6 +165,7 @@ public class Search extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
                ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
+               ListaEstaciones.setListData((String[])ruta.getParadas().toArray());
            }
            
            Estacion estacion = DataManipulation.listaEstacionesAVL.find(new Estacion(BuscarEstacion.getText()));
@@ -173,6 +185,7 @@ public class Search extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
                ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
+               ListaEstaciones.setListData(ruta.getParadas().toArray(new String[ruta.getParadas().size()]));
            }
            
            Estacion estacion = DataManipulation.listaEstacionesHM.get(BuscarEstacion.getText());
@@ -227,9 +240,11 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JButton Buscar;
     private javax.swing.JTextField BuscarEstacion;
     private javax.swing.JTextField BuscarRuta;
+    private javax.swing.JList<String> ListaEstaciones;
     private javax.swing.JButton MasCercana;
     private javax.swing.JLabel ResultadoBusqueadaEstacion;
     private javax.swing.JLabel ResultadoBusqueadaRuta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

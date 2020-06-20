@@ -7,6 +7,7 @@ package DataSrc;
 
 import DataSrc.DataStructures.Array.DynamicArray;
 import DataSrc.DataStructures.Node2B2;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -21,7 +22,7 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
     int numParadas;
     byte Linea;
     
-    DynamicArray<Estacion> paradas;
+    ArrayList<Ruta> paradas;
     
     String origen;
     String destino;
@@ -59,11 +60,11 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
         this.numUserWaiting++;
     }
 
-    public Ruta(String nombre, int numParadas, byte Linea, DynamicArray<Estacion> paradas) {
+    public Ruta(String nombre, int numParadas, byte Linea, DynamicArray<String> paradas) {
         this.nombre = nombre;
         this.numParadas = numParadas;
         this.Linea = Linea;
-        this.paradas = paradas;
+        this.paradas = new ArrayList();
         this.realTimeInfo = null;
     }
     
@@ -77,6 +78,7 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
     public Ruta(String nombre) {
         this.nombre = nombre;
         this.realTimeInfo = null;
+        this.paradas = new ArrayList();
     }
 
     public Ruta(int MAX_VALUE) {
@@ -172,14 +174,6 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
 
     public void setLinea(byte Linea) {
         this.Linea = Linea;
-    }
-
-    public DynamicArray<Estacion> getParadas() {
-        return paradas;
-    }
-
-    public void setParadas(DynamicArray<Estacion> paradas) {
-        this.paradas = paradas;
     }
 
     @Override

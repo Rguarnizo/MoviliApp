@@ -84,7 +84,13 @@ public class RutasPriorityQueue {
     public void insert(Ruta element) 
     { 
         if(this.maxsize == size){
-            duplicateSize();
+            this.maxsize*=2;
+            Ruta[] tempArray = new Ruta[this.maxsize+1];
+            tempArray[0] = new Ruta(Integer.MAX_VALUE);
+            for(int i=1;i <= this.size;i++){
+                tempArray[i] = this.Heap[i];
+            }
+            this.Heap = tempArray;
         }
         Heap[++size] = element; 
  
