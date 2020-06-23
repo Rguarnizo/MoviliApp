@@ -28,7 +28,7 @@ public class Search extends javax.swing.JFrame {
         transparenciaButton();
         info = new DefaultListModel();
         ListaEstaciones.setModel(info);
-        info.removeAllElements();
+        info.removeAllElements();      
                 
         
     }
@@ -64,7 +64,6 @@ public class Search extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaEstaciones = new javax.swing.JList<>();
         ResultadoBusqueadaRuta = new javax.swing.JLabel();
-        ResultadoBusqueadaEstacion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,6 +118,12 @@ public class Search extends javax.swing.JFrame {
         });
         getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 200, 50));
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setForeground(new java.awt.Color(153, 153, 153));
+
+        ListaEstaciones.setBackground(new java.awt.Color(220, 0, 23));
+        ListaEstaciones.setFont(new java.awt.Font("Rubik", 1, 16)); // NOI18N
+        ListaEstaciones.setForeground(new java.awt.Color(204, 204, 204));
         ListaEstaciones.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -126,16 +131,13 @@ public class Search extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ListaEstaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 250, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 300, 170));
 
         ResultadoBusqueadaRuta.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
         ResultadoBusqueadaRuta.setForeground(new java.awt.Color(204, 204, 204));
         getContentPane().add(ResultadoBusqueadaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 340, 30));
 
-        ResultadoBusqueadaEstacion.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
-        ResultadoBusqueadaEstacion.setForeground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(ResultadoBusqueadaEstacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 350, 30));
-
+        jLabel1.setBackground(new java.awt.Color(200, 0, 23));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Search.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -254,7 +256,6 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JTextField BuscarRuta;
     private javax.swing.JList<String> ListaEstaciones;
     private javax.swing.JButton MasCercana;
-    private javax.swing.JLabel ResultadoBusqueadaEstacion;
     private javax.swing.JLabel ResultadoBusqueadaRuta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
