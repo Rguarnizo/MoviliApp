@@ -125,8 +125,7 @@ public class DataManipulation extends Thread {
                     break;
                 case 4: visualizateData ();
                     break;
-                case 5: cleanData();
-                        JsonLoadData.loadDataAll(0);
+                case 5: cleanData();                        
                     break;
                 case 6: exec =  false;
                     break;    

@@ -22,7 +22,7 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
     int numParadas;
     byte Linea;
     
-    ArrayList<Ruta> paradas;
+    ArrayList<Estacion> paradas;
     
     String origen;
     String destino;
@@ -68,13 +68,15 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
         this.realTimeInfo = null;
     }
 
-    public ArrayList<Ruta> getParadas() {
+    public ArrayList<Estacion> getParadas() {
         return paradas;
     }
 
-    public void setParadas(ArrayList<Ruta> paradas) {
+    public void setParadas(ArrayList<Estacion> paradas) {
         this.paradas = paradas;
     }
+
+
     
     public Ruta(String nombre, String origen, String destino) {
         this.nombre = nombre;

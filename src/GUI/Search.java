@@ -3,6 +3,7 @@ package GUI;
 import DataSrc.Estacion;
 import DataSrc.Ruta;
 import Logic.DataManipulation;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author Rubén Darío Martínez
  */
 public class Search extends javax.swing.JFrame {
-
+        DefaultListModel info;
     /**
      * Creates new form Search
      */
@@ -25,6 +26,11 @@ public class Search extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         transparenciaButton();
+        info = new DefaultListModel();
+        ListaEstaciones.setModel(info);
+        info.removeAllElements();
+                
+        
     }
     
       public void transparenciaButton(){
@@ -165,7 +171,10 @@ public class Search extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
                ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
-               ListaEstaciones.setListData((String[])ruta.getParadas().toArray());
+               info.removeAllElements();
+               for(Estacion estacion: ruta.getParadas()){
+                   info.addElement(estacion);
+               }
            }
            
            Estacion estacion = DataManipulation.listaEstacionesAVL.find(new Estacion(BuscarEstacion.getText()));
@@ -173,7 +182,7 @@ public class Search extends javax.swing.JFrame {
            if(estacion == null){
                JOptionPane.showMessageDialog(null, "Estacion no encontrada...");
            } else{
-               ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
+               //ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
            }
         }
         }else {
@@ -184,8 +193,11 @@ public class Search extends javax.swing.JFrame {
            if(ruta == null){
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
-               ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
-               ListaEstaciones.setListData(ruta.getParadas().toArray(new String[ruta.getParadas().size()]));
+               
+               info.removeAllElements();
+               for(Estacion estacion: ruta.getParadas()){
+                   info.addElement(estacion);
+               }
            }
            
            Estacion estacion = DataManipulation.listaEstacionesHM.get(BuscarEstacion.getText());
@@ -193,7 +205,7 @@ public class Search extends javax.swing.JFrame {
            if(estacion == null){
                JOptionPane.showMessageDialog(null, "Estacion no encontrada...");
            } else{
-               ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
+               //ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
            }
         }
         }

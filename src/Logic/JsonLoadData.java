@@ -199,11 +199,12 @@ public class JsonLoadData {
             System.out.println ("1.Lista Usuarios DynamicArray");
             System.out.println ("2.Lista Usuarios Linked List");
             System.out.println ("3.Lista Usuarios Hash Map \n");         
-            System.out.println ("4.Lista Rutas AVL");
+            System.out.println ("4.Lista Rutas AVL");           
             System.out.println ("5.Lista Rutas HashMap\n");
             System.out.println ("6.Lista Estaciones AVL");
             System.out.println ("7.Lista Estaciones HashMap\n");
-            System.out.println("8. SALIR\n");
+            System.out.println ("8.Litsa Rutas con Estaciones\n ");
+            System.out.println("9. SALIR\n");
 
             int option = 0;
             Scanner scanner = new Scanner(System.in);
@@ -232,8 +233,9 @@ public class JsonLoadData {
                     break;
                 case 7: System.out.println("Tiempo Carga Estaciones HashMap: " + loadDataEstaciones(DataManipulation.listaEstacionesHM,cantidadDatos)/1000000 +" milliseg");
                     break;                 
-                case 8: exec =  false;
+                case 8: System.out.println("Tiempo Carga Estaciones HashMap: " + loadDataAll(cantidadDatos)/1000000 +" milliseg");
                     break;
+                case 9: exec =  false;   
                 default:
                     System.out.println ("Introduzca una opción correcta.");
                     break;
@@ -314,7 +316,7 @@ public class JsonLoadData {
             if(dataSize == 0){
               obj  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListEsta.json")));
             }else{
-                obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
+                obj  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListEsta%d.json",dataSize)));
             }
             JSONArray jsonArray = (JSONArray) obj;
 
@@ -326,9 +328,10 @@ public class JsonLoadData {
                 String Nombre= jsonObject.get ("Ruta").toString ();
                 Ruta rutaPut = new Ruta(Nombre);
                 
-                JSONArray arrayRutas = (JSONArray) jsonObject.get("ListaParadas");
-                for(int j = 0;j<arrayRutas.size();j++){
-                    rutaPut.getParadas().add(new Ruta(arrayRutas.get(j).toString()));                            
+                JSONArray arrayEstacion = (JSONArray) jsonObject.get("ListaParadas");
+                for(int j = 0;j<arrayEstacion.size();j++){
+                    Estacion estacion = new Estacion(arrayEstacion.get(j).toString());
+                    rutaPut.getParadas().add(estacion);                            
                 }
                 DataManipulation.listaRutasHM.put(Nombre,rutaPut);
                 
