@@ -17,6 +17,7 @@ import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
 import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;
 import static Logic.DataManipulation.colaPrioridadRuta;
+import com.csvreader.CsvWriter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -170,7 +171,7 @@ public class DataManipulation extends Thread {
                     break;
                 case 5: AnalisisEstructuraRuta(listaRutasHM);
                     break;
-                case 6: AnalisisEstructuraEstacion(listaEstacionesAVL);
+                case 6: AnalisisEstructuraEstacion();
                     break;
                 case 7: AnalisisEstructuraEstacion(listaEstacionesHM);
                     break;
@@ -268,40 +269,40 @@ public class DataManipulation extends Thread {
     private void AnalisisEstructuraUsuario(DynamicArray<User> listaUsuariosDA) {
         
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
             
             
-            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosDA, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataUser(listaUsuariosDA, dataSizes[i]);
             
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             long initTime = System.nanoTime();
             listaUsuariosDA.push(usuarioPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             
             initTime = System.nanoTime();
             listaUsuariosDA.indexOf(usuarioPrueba);
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaUsuariosDA.indexOf(usuarioPrueba);
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
             
             cleanData();
             
          
         }
-           EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaUsuariosDynamicArray.txt");
+           EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaUsuariosDynamicArray.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
@@ -313,35 +314,35 @@ public class DataManipulation extends Thread {
     private void AnalisisEstructuraUsuario(LinkedList<User> listaUsuariosLK) {
         
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosLK, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataUser(listaUsuariosLK, dataSizes[i]);
             
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             long initTime = System.nanoTime();
             listaUsuariosLK.pushBack(usuarioPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaUsuariosLK.get(dataSizes[i]);
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaUsuariosLK.get(dataSizes[i]);
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
             cleanData();
         }
         
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaUsuariosArrayList.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaUsuariosArrayList.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al procesar grandes cantidades de datos. \n" + e);
         }
@@ -351,37 +352,37 @@ public class DataManipulation extends Thread {
 
     private void AnalisisEstructuraUsuario(HashMap<String, User> listaUsuariosHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
             
-            resultTimesAllData[i] = JsonLoadData.loadDataUser(listaUsuariosHM, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataUser(listaUsuariosHM, dataSizes[i]);
             
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             
             long initTime = System.nanoTime();
             listaUsuariosHM.put(usuarioPrueba.getCedula(), usuarioPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaUsuariosHM.get("Prueba");
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaUsuariosHM.get("EstaClaveNoDeberiaDeEstar");
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
                  
             cleanData();
         }
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaUsuariosHashMap.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaUsuariosHashMap.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
@@ -391,35 +392,35 @@ public class DataManipulation extends Thread {
 
     private void AnalisisEstructuraRuta(AVLTree<Ruta> listaRutasAVL) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimesAllData[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataRutas(listaRutasAVL, dataSizes[i]);
             Ruta rutaPrueba = new Ruta("ZZZZZZZ","Prueba","Prueba");
             
             long initTime = System.nanoTime();
             listaRutasAVL.insert(rutaPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaRutasAVL.find(rutaPrueba);
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaRutasAVL.toString();
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
              
             cleanData();
         }
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaRutaAVLTree.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaRutaAVLTree.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
@@ -428,73 +429,81 @@ public class DataManipulation extends Thread {
 
     private void AnalisisEstructuraRuta(HashMap<String, Ruta> listaRutasHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimesAllData[i] = JsonLoadData.loadDataRutas(listaRutasHM, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataRutas(listaRutasHM, dataSizes[i]);
             
             Ruta rutaPrueba = new Ruta("Prueba","Prueba","Prueba");
             
             long initTime = System.nanoTime();
             listaRutasHM.put("Prueba",rutaPrueba);
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaRutasHM.get("Prueba");
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaRutasHM.containsKey("NoDeberiaEstarEstaKey");
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
             cleanData();
         }
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaRutaHashMap.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaRutaHashMap.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
         
     }
 
-    private void AnalisisEstructuraEstacion(AVLTree<Estacion> listaEstacionesAVL) {
-        int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+    private void AnalisisEstructuraEstacion() {
+        int dataSizes[] = {1000,5000,10000,50000,100000,250000,500000,750000,1000000};
+        long insertAll[] = new long[dataSizes.length];
+        long insertOne[] = new long[dataSizes.length];
+        long searchOne[] = new long[dataSizes.length];
+        long consultAll[] = new long[dataSizes.length]; 
         
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            cleanData();
+            
+            long initTime = System.nanoTime();
+            for(int j =0; j< dataSizes[i];j++){
+                listaEstacionesAVL.insert(new Estacion(String.valueOf(j), j, j, j, j));
+            }
+            long finalTime = System.nanoTime();
+            //insertAll[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+            insertAll[i] = finalTime-initTime;
             
             Estacion estacionPrueba = new Estacion("ZZZZZZZ", i, i, i, i);
             
-            long initTime = System.nanoTime();
+            initTime = System.nanoTime();
             listaEstacionesAVL.insert(estacionPrueba);
-            long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime-initTime;
+            finalTime = System.nanoTime();
+            insertOne[i] = finalTime-initTime;
             
-             initTime = System.nanoTime();
+            initTime = System.nanoTime();
             listaEstacionesAVL.find(estacionPrueba);
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaEstacionesAVL.toString();
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             
              
             cleanData();
         }
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaEstacionesAVLTree.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaEstacionesAVLTree.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
@@ -503,34 +512,34 @@ public class DataManipulation extends Thread {
 
     private void AnalisisEstructuraEstacion(HashMap<String, Estacion> listaEstacionesHM) {
         int dataSizes[] = {10000,100000,500000,1000000};
-        long resultTimesAllData[] = new long[4];
-        long resultTimesOneData[] = new long[4];
-        long resultTimesFindData[] = new long[4];
-        long resultTimesConsultAll[] = new long[4]; 
+        long insertAll[] = new long[4];
+        long insertOne[] = new long[4];
+        long searchOne[] = new long[4];
+        long consultAll[] = new long[4]; 
         
         
         //Inserción De Todos los datos!
         try{
         for(int i = 0; i< dataSizes.length;i++){
-            resultTimesAllData[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
+            insertAll[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
             long initTime = System.nanoTime();
             listaEstacionesHM.put("Prueba",new Estacion("Prueba", i, i, 1, 1));
             long finalTime = System.nanoTime();
-            resultTimesOneData[i] = finalTime - initTime;
+            insertOne[i] = finalTime - initTime;
             
             
             initTime = System.nanoTime();
             listaEstacionesHM.get("Prueba");
             finalTime = System.nanoTime();
-            resultTimesFindData[i] = finalTime - initTime;
+            searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
             listaEstacionesHM.containsKey("NoDeberiaEstarEstaKey");
             finalTime = System.nanoTime();
-            resultTimesConsultAll[i] = finalTime - initTime;
+            consultAll[i] = finalTime - initTime;
             cleanData();
         }
-        EscribirArchivoAnalisis(dataSizes, resultTimesAllData, resultTimesOneData, resultTimesFindData, resultTimesConsultAll, "ListaEstacionesHashMap.txt");
+        EscribirArchivoAnalisis(dataSizes, insertAll, insertOne, searchOne, consultAll, "ListaEstacionesHashMap.txt");
         }catch(Exception e){
             System.out.println("Hubo algun error al cargar grandes cantidades de datos. \n" + e);
         }
@@ -541,9 +550,9 @@ public class DataManipulation extends Thread {
     private void EscribirArchivoAnalisis(int dataSizes[],long[] insertAll,long[] insertOne,long[] searchOne,long[] consultAll,String outFile){
         BufferedWriter bw = null;
         FileWriter fw = null;
-
-    try {
-        String data = "Hola stackoverflow.com...";
+        
+    try {       
+        CsvWriter csvWriter = new CsvWriter(outFile);
         File file = new File(outFile);
         // Si el archivo no existe, se crea!
         if (!file.exists()) {
@@ -555,12 +564,41 @@ public class DataManipulation extends Thread {
         
         Date fecha = new Date();
         bw.write("Analisis Estructura   " + fecha + "\n \n" );
-        
+        bw.write("");
+        bw.write("Insertar Todos\n");
         for(int i= 0;i < insertAll.length;i++){           
-            bw.write(String.format("Insertar %d Datos: " + insertAll[i]/1000000 + " milliSeg \n",dataSizes[i]));
-            bw.write(String.format("Insertar un dato con %d datos insertados: " + insertOne[i] + " NanoSeg \n",dataSizes[i]));
-            bw.write(String.format("Buscar un dato: " + searchOne[i]+ " NanoSeg \n",dataSizes[i]));
-            bw.write(String.format("Consultar todos los datos: " + consultAll[i]/1000000 + " milliSeg \n \n",dataSizes[i]));
+            if(i==0){
+                bw.write("Datos \t Tiempo ns\n");
+            }
+            bw.write(String.format("%d \t" + insertAll[i] +"\n",dataSizes[i]));
+            
+        }
+        
+        bw.write("\n");
+        bw.write("Insertar Uno\n");
+        for(int i= 0;i < insertOne.length;i++){           
+            if(i==0){
+                bw.write("Datos\tTiempo ns\n");
+            }
+            bw.write(String.format("%d \t" + insertOne[i]+"\n",dataSizes[i]));            
+        }
+        bw.write("\n");
+        bw.write("Buscar Uno\n");
+        for(int i= 0;i < insertOne.length;i++){           
+            if(i==0){
+                bw.write("Datos\tTiempo ns\n");
+            }
+            bw.write(String.format("%d\t" + searchOne[i]+"\n",dataSizes[i]));
+            
+        }
+        bw.write("\n");
+        bw.write("Consultar Todos\n");
+        for(int i= 0;i < consultAll.length;i++){           
+            if(i==0){
+                bw.write("Datos\tTiempo ns\n");
+            }
+            bw.write(String.format("%d\t" + consultAll[i]+"\n",dataSizes[i]));
+            
         }
        
         System.out.println("información agregada al archivo de texto! \n");
@@ -589,7 +627,7 @@ public class DataManipulation extends Thread {
                     AnalisisEstructuraUsuario(listaUsuariosHM);
                     AnalisisEstructuraRuta(listaRutasAVL);
                     AnalisisEstructuraRuta(listaRutasHM);
-                    AnalisisEstructuraEstacion(listaEstacionesAVL);
+                    AnalisisEstructuraEstacion();
                     AnalisisEstructuraEstacion(listaEstacionesHM);
     }
 
