@@ -1,0 +1,29 @@
+Analisis Estructura   Wed Jun 24 23:53:20 COT 2020
+ 
+Insertar Todos
+Datos 	 Tiempo ns
+10000 	76782900
+100000 	177443400
+500000 	679935300
+1000000 	1497191500
+
+Insertar Uno
+Datos	Tiempo ns
+10000 	1600
+100000 	3900
+500000 	4200
+1000000 	4900
+
+Buscar Uno
+Datos	Tiempo ns
+10000	200
+100000	900
+500000	900
+1000000	900
+
+Consultar Todos
+Datos	Tiempo ns
+10000	1300
+100000	600
+500000	900
+1000000	1300

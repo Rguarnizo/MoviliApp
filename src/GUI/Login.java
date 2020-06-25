@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
                 new Worker(DataManipulation.listaUsuariosHM.get(User.getText())).setVisible(true);
                 dispose();
             }else if(DataManipulation.listaUsuariosHM.get(User.getText()).getPassword().equals(Password.getText())){
-                new Main().setVisible(true);
+                new Main(DataManipulation.listaUsuariosHM.get(User.getText())).setVisible(true);
                 dispose();
             }else{
                 JOptionPane.showMessageDialog(null,"Verifique su contraseña");

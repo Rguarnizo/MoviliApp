@@ -16,7 +16,6 @@ import DataSrc.DataStructures.DoublyLinkedList;
 import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
 import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;
-import static Logic.DataManipulation.colaPrioridadRuta;
 import com.csvreader.CsvWriter;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -282,18 +281,18 @@ public class DataManipulation extends Thread {
             
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             long initTime = System.nanoTime();
-            listaUsuariosDA.push(usuarioPrueba);
+            this.listaUsuariosDA.push(usuarioPrueba);
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             
             initTime = System.nanoTime();
-            listaUsuariosDA.indexOf(usuarioPrueba);
+            this.listaUsuariosDA.indexOf(usuarioPrueba);
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosDA.indexOf(usuarioPrueba);
+            this.listaUsuariosDA.indexOf(usuarioPrueba);
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             
@@ -325,17 +324,17 @@ public class DataManipulation extends Thread {
             
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             long initTime = System.nanoTime();
-            listaUsuariosLK.pushBack(usuarioPrueba);
+            this.listaUsuariosLK.pushBack(usuarioPrueba);
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosLK.get(dataSizes[i]);
+            this.listaUsuariosLK.get(dataSizes[i]);
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosLK.get(dataSizes[i]);
+            this.listaUsuariosLK.get(dataSizes[i]);
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             
@@ -365,17 +364,17 @@ public class DataManipulation extends Thread {
             User usuarioPrueba = new User("Prueba", "Prueba", "Prueba","Prueba","Prueba","Prueba");
             
             long initTime = System.nanoTime();
-            listaUsuariosHM.put(usuarioPrueba.getCedula(), usuarioPrueba);
+            this.listaUsuariosHM.put(usuarioPrueba.getCedula(), usuarioPrueba);
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosHM.get("Prueba");
+            this.listaUsuariosHM.get("Prueba");
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaUsuariosHM.get("EstaClaveNoDeberiaDeEstar");
+            this.listaUsuariosHM.get("EstaClaveNoDeberiaDeEstar");
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             
@@ -403,17 +402,17 @@ public class DataManipulation extends Thread {
             Ruta rutaPrueba = new Ruta("ZZZZZZZ","Prueba","Prueba");
             
             long initTime = System.nanoTime();
-            listaRutasAVL.insert(rutaPrueba);
+            this.listaRutasAVL.insert(rutaPrueba);
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaRutasAVL.find(rutaPrueba);
+            this.listaRutasAVL.find(rutaPrueba);
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaRutasAVL.toString();
+            this.listaRutasAVL.toString();
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             
@@ -441,17 +440,17 @@ public class DataManipulation extends Thread {
             Ruta rutaPrueba = new Ruta("Prueba","Prueba","Prueba");
             
             long initTime = System.nanoTime();
-            listaRutasHM.put("Prueba",rutaPrueba);
+            this.listaRutasHM.put("Prueba",rutaPrueba);
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaRutasHM.get("Prueba");
+            this.listaRutasHM.get("Prueba");
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaRutasHM.containsKey("NoDeberiaEstarEstaKey");
+            this.listaRutasHM.containsKey("NoDeberiaEstarEstaKey");
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             
@@ -480,7 +479,7 @@ public class DataManipulation extends Thread {
                 listaEstacionesAVL.insert(new Estacion(String.valueOf(j), j, j, j, j));
             }
             long finalTime = System.nanoTime();
-            //insertAll[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
+//            insertAll[i] = JsonLoadData.loadDataEstaciones(listaEstacionesAVL, dataSizes[i]);
             insertAll[i] = finalTime-initTime;
             
             Estacion estacionPrueba = new Estacion("ZZZZZZZ", i, i, i, i);
@@ -523,18 +522,18 @@ public class DataManipulation extends Thread {
         for(int i = 0; i< dataSizes.length;i++){
             insertAll[i] = JsonLoadData.loadDataEstaciones(listaEstacionesHM, dataSizes[i]);
             long initTime = System.nanoTime();
-            listaEstacionesHM.put("Prueba",new Estacion("Prueba", i, i, 1, 1));
+            DataManipulation.listaEstacionesHM.put("Prueba",new Estacion("Prueba", i, i, 1, 1));
             long finalTime = System.nanoTime();
             insertOne[i] = finalTime - initTime;
             
             
             initTime = System.nanoTime();
-            listaEstacionesHM.get("Prueba");
+            DataManipulation.listaEstacionesHM.get("Prueba");
             finalTime = System.nanoTime();
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            listaEstacionesHM.containsKey("NoDeberiaEstarEstaKey");
+            DataManipulation.listaEstacionesHM.containsKey("NoDeberiaEstarEstaKey");
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             cleanData();

@@ -1,5 +1,7 @@
 package GUI;
 
+import DataSrc.User;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,13 +15,16 @@ package GUI;
  */
 public class Main extends javax.swing.JFrame {
 
+    static User userLog;
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Main(User user) {
         initComponents();
         this.setLocationRelativeTo(null);
         transparenciaButton();
+        Main.userLog = user;
+        this.Saldo.setText(String.valueOf(user.getSaldo()));
     }
     
      public void transparenciaButton(){
@@ -153,7 +158,7 @@ public class Main extends javax.swing.JFrame {
 
     private void PagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagosActionPerformed
         // TODO add your handling code here:
-        new Payment().setVisible(true);
+        new Payment(userLog).setVisible(true);
         dispose();
     }//GEN-LAST:event_PagosActionPerformed
 
@@ -193,7 +198,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new Main(userLog).setVisible(true);
             }
         });
     }

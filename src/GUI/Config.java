@@ -1,5 +1,7 @@
 package GUI;
 
+import static GUI.Main.userLog;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -224,7 +226,7 @@ public class Config extends javax.swing.JFrame {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         
-        new Main().setVisible(true);
+        new Main(userLog).setVisible(true);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
 

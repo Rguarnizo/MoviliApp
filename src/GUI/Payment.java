@@ -1,5 +1,7 @@
 package GUI;
 
+import DataSrc.User;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,13 +15,17 @@ package GUI;
  */
 public class Payment extends javax.swing.JFrame {
 
+    static User userLog;
+    
     /**
      * Creates new form Payment
      */
-    public Payment() {
+    public Payment(User user) {
         initComponents();
         this.setLocationRelativeTo(null);
         transparenciaButton();
+        this.userLog = user;
+        this.Saldo.setText(String.valueOf(user.getSaldo())); 
     }
     
     public void transparenciaButton(){
@@ -125,7 +131,7 @@ public class Payment extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        new Main().setVisible(true);
+        new Main(userLog).setVisible(true);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
 
@@ -167,7 +173,7 @@ public class Payment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Payment().setVisible(true);
+                new Payment(userLog).setVisible(true);
             }
         });
     }

@@ -2,6 +2,7 @@ package GUI;
 
 import DataSrc.Estacion;
 import DataSrc.Ruta;
+import static GUI.Main.userLog;
 import Logic.DataManipulation;
 import javax.swing.JOptionPane;
 
@@ -144,7 +145,7 @@ public class Travel extends javax.swing.JFrame {
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         // TODO add your handling code here:
-        new Main().setVisible(true);
+        new Main(userLog).setVisible(true);
         dispose();
     }//GEN-LAST:event_AtrasActionPerformed
 
