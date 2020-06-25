@@ -21,10 +21,10 @@ Este proyecto se realiza como actividad de la asignatura de Estructuras de Datos
  - [ ]  **Sistema de pagos a partir de Codigo QR**
  - [ ]  **Sistema de recargas**
  - [x] **Iniciar,cambiar,terminar Ruta**
- - [ ] **Buscar estacion o ruta y su información** 
+ - [x] **Buscar estacion o ruta y su información** 
  - [ ] **Mapa en tiempo real**
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODg3MDk5NDNdfQ==
+eyJoaXN0b3J5IjpbLTE4OTMxNTQ3MSwtMTE4ODcwOTk0M119
 -->
