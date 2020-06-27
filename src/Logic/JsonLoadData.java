@@ -44,12 +44,12 @@ public class JsonLoadData {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
                 String apellido= jsonObject.get ("apellido").toString ();
                 String email= jsonObject.get ("email").toString ();
@@ -73,12 +73,12 @@ public class JsonLoadData {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
                 String apellido= jsonObject.get ("apellido").toString ();
                 String email= jsonObject.get ("email").toString ();
@@ -101,12 +101,12 @@ public class JsonLoadData {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse (new FileReader (String.format ("Data\\User\\%d.json",dataSize)));
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String nombre= jsonObject.get ("nombre").toString ();
                 String apellido= jsonObject.get ("apellido").toString ();
                 String email= jsonObject.get ("email").toString ();
@@ -134,11 +134,11 @@ public class JsonLoadData {
             } else {
                  obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM%d.json",dataSize)));
             }
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
             initLoadData = System.nanoTime (); 
-            System.out.println (jsonArray.size ());
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            System.out.println (jsonRutas.size ());
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
@@ -166,12 +166,12 @@ public class JsonLoadData {
             }else{
                 obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
             }
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 int NVagones = Integer.parseInt(jsonObject.get("NVagones").toString());
                 int NEntradas  = Integer.parseInt(jsonObject.get("NEntradas").toString());
@@ -254,13 +254,13 @@ public class JsonLoadData {
             } else {
                  obj = parser.parse (new FileReader (String.format ("Data\\Rutas\\RutasTM%d.json",dataSize)));
             }
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
              initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
+            for(int i = 0; i < jsonRutas.size ();i++){
             
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 String Origen = jsonObject.get("Origen").toString();
                 String Destino = jsonObject.get("Destino").toString();
@@ -286,12 +286,12 @@ public class JsonLoadData {
             }else{
                 obj  = parser.parse (new FileReader (String.format ("Data\\Estaciones\\EstacionesTM%d.json",dataSize)));
             }
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) obj;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 int NVagones = Integer.parseInt(jsonObject.get("NVagones").toString());
                 int NEntradas  = Integer.parseInt(jsonObject.get("NEntradas").toString());
@@ -312,29 +312,50 @@ public class JsonLoadData {
           long initLoadData = 0;
         JSONParser parser = new JSONParser();
         try {
-            Object obj;
+            Object rutas = null;
+            Object estaciones = null;
             if(dataSize == 0){
-              obj  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListEsta.json")));
+              rutas  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListParadas.json")));
+              estaciones = parser.parse(new FileReader(String.format("Data\\JsonEstacionesListRutas.json")));
             }else{
-                obj  = parser.parse (new FileReader (String.format ("Data\\JsonRutasListEsta%d.json",dataSize)));
+                System.out.println("Si estas cargando la información no necesitas definir el tamaño, Pon 0");
             }
-            JSONArray jsonArray = (JSONArray) obj;
+            JSONArray jsonRutas = (JSONArray) rutas;
+            JSONArray jsonEstaciones = (JSONArray) estaciones;
 
-            System.out.println (jsonArray.size ());
+            System.out.println (jsonRutas.size ());
             initLoadData = System.nanoTime ();
-            for(int i = 0; i < jsonArray.size ();i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get (i);
+            for(int i = 0; i < jsonRutas.size ();i++){
+                JSONObject jsonObject = (JSONObject) jsonRutas.get (i);
                 
-                String Nombre= jsonObject.get ("Ruta").toString ();
+                String Nombre= jsonObject.get ("Rutas").toString ();
                 Ruta rutaPut = new Ruta(Nombre);
                 
-                JSONArray arrayEstacion = (JSONArray) jsonObject.get("ListaParadas");
+                JSONArray arrayEstacion = (JSONArray) jsonObject.get("Estaciones");
                 for(int j = 0;j<arrayEstacion.size();j++){
                     Estacion estacion = new Estacion(arrayEstacion.get(j).toString());
+                    if(!DataManipulation.listaEstacionesHM.containsKey(arrayEstacion.get(j).toString())){
+                        DataManipulation.listaEstacionesHM.put(estacion.getNombre(), estacion);
+                    }                    
                     rutaPut.getParadas().add(estacion);                            
                 }
-                DataManipulation.listaRutasHM.put(Nombre,rutaPut);
+                DataManipulation.listaRutasHM.put(Nombre,rutaPut);                                
+            }
+            
+            for(int i = 0; i < jsonEstaciones.size();i++){
+                JSONObject jsonObject = (JSONObject) jsonEstaciones.get (i);
+                Estacion estacion = DataManipulation.listaEstacionesHM.get(jsonObject.get("Estaciones").toString());
                 
+                JSONArray arrayRutas = (JSONArray) jsonObject.get("Rutas");
+                for(int j = 0;j<arrayRutas.size();j++){
+                    Ruta ruta = new Ruta(arrayRutas.get(j).toString());
+                    if(!DataManipulation.listaRutasHM.containsKey(arrayRutas.get(j).toString())){
+                        DataManipulation.listaRutasHM.put(arrayRutas.get(j).toString(), ruta);
+                    }else{
+                     ruta = DataManipulation.listaRutasHM.get(arrayRutas.get(j).toString());
+                    }        
+                        estacion.getListaRutas().push(ruta);
+                }
                 
             }
         }catch (Exception e){

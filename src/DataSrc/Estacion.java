@@ -35,6 +35,7 @@ public class Estacion implements Comparable<Estacion> {
 
     public Estacion(String Nombre) {
         this.Nombre = Nombre;
+        this.listaRutas = new DynamicArray<>(10);
     }
     
      public Estacion(String Nombre, int Nvagones, int NEntradas, float latitude, float longitude) {
@@ -53,10 +54,44 @@ public class Estacion implements Comparable<Estacion> {
         this.NEntradas = NEntradas;
         this.Bolardos = Bolardos;
         this.Zona = Zona;
+        this.listaRutas = new DynamicArray<>(10);
     }
 
     public Estacion(int NUsuarios) {
         this.NUsuarios = NUsuarios;
+        this.listaRutas = new DynamicArray<>(10);
+    }
+
+    public int getNvagones() {
+        return Nvagones;
+    }
+
+    public void setNvagones(int Nvagones) {
+        this.Nvagones = Nvagones;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public DynamicArray<Ruta> getListaRutas() {
+        return listaRutas;
+    }
+
+    public void setListaRutas(DynamicArray<Ruta> listaRutas) {
+        this.listaRutas = listaRutas;
     }
     
     
