@@ -341,6 +341,7 @@ public class JsonLoadData {
                 }
                 DataManipulation.listaRutasHM.put(Nombre,rutaPut);                                
             }
+            DataManipulation.listaRutasHM.remove("");
             
             for(int i = 0; i < jsonEstaciones.size();i++){
                 JSONObject jsonObject = (JSONObject) jsonEstaciones.get (i);
@@ -358,6 +359,7 @@ public class JsonLoadData {
                 }
                 
             }
+            DataManipulation.listaEstacionesHM.remove("");
         }catch (Exception e){
             e.printStackTrace ();
         }

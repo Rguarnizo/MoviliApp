@@ -19,18 +19,22 @@ import javax.swing.JOptionPane;
  * @author Rubén Darío Martínez
  */
 public class Search extends javax.swing.JFrame {
-        DefaultListModel info;
+        DefaultListModel infoEstaciones;
+        DefaultListModel infoRutas;
     /**
      * Creates new form Search
      */
     public Search() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
         transparenciaButton();
-        info = new DefaultListModel();
-        ListaEstaciones.setModel(info);
-        info.removeAllElements();      
-                
+        infoEstaciones = new DefaultListModel();
+        ListaEstaciones.setModel(infoEstaciones);
+        infoEstaciones.removeAllElements();           
+        infoRutas = new DefaultListModel();
+        ListaRutas.setModel(infoRutas);
+        infoEstaciones.removeAllElements();
         
     }
     
@@ -64,7 +68,8 @@ public class Search extends javax.swing.JFrame {
         Buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaEstaciones = new javax.swing.JList<>();
-        ResultadoBusqueadaRuta = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ListaRutas = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,11 +137,22 @@ public class Search extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ListaEstaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 300, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 180, 170));
 
-        ResultadoBusqueadaRuta.setFont(new java.awt.Font("Rubik", 1, 20)); // NOI18N
-        ResultadoBusqueadaRuta.setForeground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(ResultadoBusqueadaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 340, 30));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setForeground(new java.awt.Color(153, 153, 153));
+
+        ListaRutas.setBackground(new java.awt.Color(220, 0, 23));
+        ListaRutas.setFont(new java.awt.Font("Rubik", 1, 16)); // NOI18N
+        ListaRutas.setForeground(new java.awt.Color(204, 204, 204));
+        ListaRutas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(ListaRutas);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 180, 170));
 
         jLabel1.setBackground(new java.awt.Color(200, 0, 23));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Search.png"))); // NOI18N
@@ -173,10 +189,10 @@ public class Search extends javax.swing.JFrame {
            if(ruta == null){
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
-               ResultadoBusqueadaRuta.setText("Ruta "+ ruta.getNombre() +" encontrada");
-               info.removeAllElements();
+               
+               infoEstaciones.removeAllElements();
                for(Estacion estacion: ruta.getParadas()){
-                   info.addElement(estacion);
+                   infoEstaciones.addElement(estacion);
                }
            }
            
@@ -197,9 +213,9 @@ public class Search extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Ruta no encontrada...");
            } else{
                
-               info.removeAllElements();
+               infoEstaciones.removeAllElements();
                for(Estacion estacion: ruta.getParadas()){
-                   info.addElement(estacion);
+                   infoEstaciones.addElement(estacion);
                }
            }
            
@@ -209,6 +225,11 @@ public class Search extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Estacion no encontrada...");
            } else{
                //ResultadoBusqueadaEstacion.setText("Estación "+ estacion.getNombre() +" encontrada");
+               
+               infoRutas.removeAllElements();
+               for(int i = 0; i < estacion.getListaRutas().getSize();i++){
+                   infoRutas.addElement(estacion.getListaRutas().get(i));
+               }
            }
         }
         }
@@ -224,9 +245,9 @@ public class Search extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+            for (javax.swing.UIManager.LookAndFeelInfo infoEstaciones : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(infoEstaciones.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(infoEstaciones.getClassName());
                     break;
                 }
             }
@@ -256,9 +277,10 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JTextField BuscarEstacion;
     private javax.swing.JTextField BuscarRuta;
     private javax.swing.JList<String> ListaEstaciones;
+    private javax.swing.JList<String> ListaRutas;
     private javax.swing.JButton MasCercana;
-    private javax.swing.JLabel ResultadoBusqueadaRuta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
