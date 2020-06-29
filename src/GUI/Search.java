@@ -70,6 +70,8 @@ public class Search extends javax.swing.JFrame {
         ListaEstaciones = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaRutas = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,6 +155,14 @@ public class Search extends javax.swing.JFrame {
         jScrollPane2.setViewportView(ListaRutas);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 180, 170));
+
+        jLabel2.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        jLabel2.setText("Rutas");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 70, 30));
+
+        jLabel3.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        jLabel3.setText("Paradas");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 80, 30));
 
         jLabel1.setBackground(new java.awt.Color(200, 0, 23));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src_images/Search.png"))); // NOI18N
@@ -280,6 +290,8 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JList<String> ListaRutas;
     private javax.swing.JButton MasCercana;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

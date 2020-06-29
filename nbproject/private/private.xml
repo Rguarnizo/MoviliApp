@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Login.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Config.java</file>
+            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/Estacion.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Travel.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Search.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Payment.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Main.java</file>
+            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/Logic/JsonLoadData.java</file>
         </group>
     </open-files>
 </project-private>
