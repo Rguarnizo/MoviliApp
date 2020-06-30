@@ -153,7 +153,7 @@ public class Main extends javax.swing.JFrame {
 
     private void MapaInteractivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MapaInteractivoActionPerformed
         // TODO add your handling code here:
-        
+        Maps map = new Maps("");
     }//GEN-LAST:event_MapaInteractivoActionPerformed
 
     private void PagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagosActionPerformed

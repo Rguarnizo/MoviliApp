@@ -157,10 +157,12 @@ public class Search extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 180, 170));
 
         jLabel2.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(235, 235, 235));
         jLabel2.setText("Rutas");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Rubik", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(235, 235, 235));
         jLabel3.setText("Paradas");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 80, 30));
 
