@@ -38,8 +38,17 @@ public class Maps extends MapView{
                     
                     for(Estacion estacion: DataManipulation.listaEstacionesHM.values()){
                          Marker mark = new Marker(map);
-                         mark.setPosition(new LatLng(estacion.getLatitude(),estacion.getLongitude()));                         
+                         mark.setPosition(new LatLng(estacion.getLatitude(),estacion.getLongitude()));
+                         Icon icon = new Icon();
+                         icon.loadFromFile("src\\src_images\\TMLogo.png");
+                         icon.setScaledSize(new Size(30,30));
+                         mark.setIcon(icon);
+                         mark.setTitle(estacion.getNombre());
                     }
+                    
+                   
+                    
+                    
                 }
             }
         });
