@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import DataSrc.Estacion;
+import Logic.DataManipulation;
 import com.teamdev.jxmaps.swing.MapView;
 import com.teamdev.jxmaps.*;
 import java.awt.BorderLayout;
@@ -34,6 +36,10 @@ public class Maps extends MapView{
                     map.setCenter(new LatLng(4.60971, -74.08175));
                     map.setZoom(10.0);
                     
+                    for(Estacion estacion: DataManipulation.listaEstacionesHM.values()){
+                         Marker mark = new Marker(map);
+                         mark.setPosition(new LatLng(estacion.getLatitude(),estacion.getLongitude()));                         
+                    }
                 }
             }
         });

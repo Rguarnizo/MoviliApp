@@ -28,8 +28,8 @@ public class Estacion implements Comparable<Estacion> {
     
     String Zona;
     
-    float latitude;
-    float longitude;
+    double latitude;
+    double longitude;
     
     DynamicArray<Ruta> listaRutas;
 
@@ -38,7 +38,7 @@ public class Estacion implements Comparable<Estacion> {
         this.listaRutas = new DynamicArray<>(10);
     }
     
-     public Estacion(String Nombre, int Nvagones, int NEntradas, float latitude, float longitude) {
+     public Estacion(String Nombre, int Nvagones, int NEntradas, double latitude, double longitude) {
         this.Nombre = Nombre;
         this.Nvagones = Nvagones;
         this.NEntradas = NEntradas;
@@ -70,17 +70,20 @@ public class Estacion implements Comparable<Estacion> {
         this.Nvagones = Nvagones;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
+
+    
     public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
-        return longitude;
-    }
+
 
     public void setLongitude(float longitude) {
         this.longitude = longitude;

@@ -175,10 +175,10 @@ public class JsonLoadData {
                 String Nombre= jsonObject.get ("Nombre").toString ();
                 int NVagones = Integer.parseInt(jsonObject.get("NVagones").toString());
                 int NEntradas  = Integer.parseInt(jsonObject.get("NEntradas").toString());
-                float Latitude =  Float.parseFloat(jsonObject.get("Latitud").toString());
-                float Longitude = Float.parseFloat(jsonObject.get("Longitud").toString());
+                double Latitude =  Double.parseDouble(jsonObject.get("Latitud").toString());
+                double Longitude = Double.parseDouble(jsonObject.get("Longitud").toString());
                 
-                Estacion estacion = new Estacion(Nombre, NVagones,NEntradas, initLoadData, initLoadData);
+                Estacion estacion = new Estacion(Nombre, NVagones,NEntradas, Latitude, Longitude);
                 listaEstacionesHM.put(Nombre,estacion);
                 DataManipulation.colaPrioridadEstaciones.insert(estacion);
             }
