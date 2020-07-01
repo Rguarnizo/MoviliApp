@@ -4,6 +4,7 @@ import DataSrc.Estacion;
 import DataSrc.Ruta;
 import static GUI.Main.userLog;
 import Logic.DataManipulation;
+import com.teamdev.jxmaps.MapViewOptions;
 import javax.swing.JOptionPane;
 
 /*
@@ -153,9 +154,18 @@ public class Travel extends javax.swing.JFrame {
         if(PuntoPartida.getText().isEmpty() || PuntoPartida.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Coloque la estacion de partida y la de destino");
         }else if(DataManipulation.listaEstacionesHM.get(PuntoPartida.getText()) != null){
-            Estacion estacion = DataManipulation.listaEstacionesHM.get(PuntoPartida.getText());
-            if(estacion != null){                
-                DataManipulation.colaPrioridadEstaciones.changePriority(estacion);
+            Estacion origen = DataManipulation.listaEstacionesHM.get(PuntoPartida.getText());
+            Estacion destino = DataManipulation.listaEstacionesHM.get(PuntoDestino.getText());
+            if(origen != null){                
+                DataManipulation.colaPrioridadEstaciones.changePriority(origen);
+                
+                MapViewOptions options = new MapViewOptions();
+                options.importPlaces();
+                options.setApiKey("AIzaSyBVi1WKFDMNFu4jsmxD6WXkTYiy8r_JX-U");
+                
+                Maps map = new Maps(options,origen,destino);
+                
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Ruta Inexistente por favor verifique");
             }                    
@@ -241,4 +251,6 @@ public class Travel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+  
 }
