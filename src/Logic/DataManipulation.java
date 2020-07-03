@@ -10,9 +10,10 @@ import DataSrc.DataStructures.LinkedList;
 import DataSrc.DataStructures.Trees.AVLTree;
 import DataSrc.Ruta;
 import DataSrc.User;
-import java.util.HashMap;
+
 import java.util.Scanner;
 import DataSrc.DataStructures.DoublyLinkedList;
+import DataSrc.DataStructures.Hash.HashMap;
 import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
 import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;

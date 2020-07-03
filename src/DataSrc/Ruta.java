@@ -220,5 +220,11 @@ public class Ruta implements Comparable<Ruta>,Comparator<Ruta> {
                 return -1;
             }
     }
+    
+    @Override
+    public int hashCode() {
+        String cadena = this.nombre + this.conductor;
+        return cadena.hashCode();
+    }
    
 }

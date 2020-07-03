@@ -5,6 +5,9 @@ import DataSrc.Ruta;
 import static GUI.Main.userLog;
 import Logic.DataManipulation;
 import com.teamdev.jxmaps.MapViewOptions;
+import java.security.InvalidKeyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -163,7 +166,7 @@ public class Travel extends javax.swing.JFrame {
                 options.importPlaces();
                 options.setApiKey("AIzaSyBVi1WKFDMNFu4jsmxD6WXkTYiy8r_JX-U");
                 
-                Maps map = new Maps(options,origen,destino);
+                Maps map = new Maps(options,origen,destino) {};
                 
                 
             }else{
@@ -191,7 +194,8 @@ public class Travel extends javax.swing.JFrame {
                 JOptionPane.showConfirmDialog(null, "Ruta Inexistente por favor verifique");
             }                    
         }else{
-            Ruta ruta = DataManipulation.listaRutasHM.get(new Ruta(RutaEscogida.getText()));
+            Ruta ruta = DataManipulation.listaRutasHM.get(RutaEscogida.getText());
+            
             if(ruta != null){                
                 DataManipulation.colaPrioridadRuta.changePriority(ruta);
             }else{

@@ -10,15 +10,17 @@ import Logic.DataManipulation;
 import com.teamdev.jxmaps.swing.MapView;
 import com.teamdev.jxmaps.*;
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
+import com.teamdev.jxmaps.examples.*;
 
 /**
  *
  * @author Rubén Darío Martínez
  */
-public class Maps extends MapView{
+public abstract class Maps extends MapView{
     
     private Map map;
 
@@ -48,18 +50,20 @@ public class Maps extends MapView{
             }
         });
         
-        JFrame frame = new JFrame("JxMaps - Hello, World!");
+        JFrame frame = new JFrame();
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
         frame.add(this, BorderLayout.CENTER);
         frame.setSize(700, 500);
+            
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
     
     public Maps(String nName){
-        JFrame jFrame = new JFrame(nName);
-        
+        JFrame jFrame = new JFrame();
+
+      
         setOnMapReadyHandler(new MapReadyHandler() {
             @Override
             public void onMapReady(MapStatus ms) {
@@ -76,7 +80,7 @@ public class Maps extends MapView{
                     map.setCenter(new LatLng(4.60971, -74.08175));
                     map.setZoom(10.0);
                     
-                    for(Estacion estacion: DataManipulation.listaEstacionesHM.values()){
+                    for(Estacion estacion: DataManipulation.listaEstacionesHM.valueSet()){
                          Marker mark = new Marker(map);
                          mark.setPosition(new LatLng(estacion.getLatitude(),estacion.getLongitude()));
                          Icon icon = new Icon();
@@ -85,27 +89,32 @@ public class Maps extends MapView{
                          mark.setAnimation(Animation.DROP);
                          mark.setIcon(icon);
                          InfoWindow info = new InfoWindow(map);
-                         info.setContent("<h1>" + estacion.getNombre() + "</h1>" + "\n" + estacion.getListaRutas());
+                         info.setContent("<h3>" + estacion.getNombre() + "</h3>" + "\n" + estacion.listaRutas());
+                         
                          
                          mark.addEventListener("mouseover", new MapMouseEvent() {
                              @Override
                              public void onEvent(MouseEvent me) {
                                  info.open(map,mark);
-                                 mark.addEventListener("mouseout",new MapMouseEvent() {
+                                 mark.addEventListener("mouseout", new MapMouseEvent() {
                                      @Override
                                      public void onEvent(MouseEvent me) {
-                                         info.close();
+                                          info.close();
                                      }
+                                     
                                  });
+                      
                              }
                          });
                          
-                         mark.addEventListener("mouseout", new MapMouseEvent() {
-                                     @Override
-                                     public void onEvent(MouseEvent me) {
-                                         info.close();
-                                     }
-                                 });                        
+                         mark.addEventListener("click", new MapMouseEvent() {
+                             @Override
+                             public void onEvent(MouseEvent me) {
+                                 
+                             }
+                         });
+                         
+                        
                          
                     }                                                                               
                 }
@@ -113,6 +122,25 @@ public class Maps extends MapView{
         });
                jFrame.add(this,BorderLayout.CENTER);
                jFrame.setSize(700,500);
+               jFrame.setUndecorated(false);
+               jFrame.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == 27){
+                    dispose();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+        });
                jFrame.setVisible(true);
     }
     
@@ -192,12 +220,5 @@ public class Maps extends MapView{
                 }
             }
         });
-    }
-    
-    public static void main(String[] args){
-        MapViewOptions options = new MapViewOptions();
-        options.setApiKey("AIzaSyBVi1WKFDMNFu4jsmxD6WXkTYiy8r_JX-U");
-        MapView view = new MapView(options);
-        Maps map = new Maps("");
     }
 }

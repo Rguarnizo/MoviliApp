@@ -42,6 +42,7 @@ public class Estacion implements Comparable<Estacion> {
         this.Nombre = Nombre;
         this.Nvagones = Nvagones;
         this.NEntradas = NEntradas;
+        this.NUsuarios = 0;
         this.latitude = latitude;
         this.longitude = longitude;
         this.listaRutas = new DynamicArray<>(10);
@@ -78,19 +79,32 @@ public class Estacion implements Comparable<Estacion> {
         return longitude;
     }
 
-    
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-
-
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
+    
+
+
     public DynamicArray<Ruta> getListaRutas() {
         return listaRutas;
+    }
+    
+    public String listaRutas(){
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < listaRutas.getSize();i++){
+            
+            if(i%1 == 0 && i != 0){
+                builder.append(listaRutas.get(i).getNombre()).append(" <br>");
+            }
+            builder.append(listaRutas.get(i).getNombre()).append("     ");
+        }
+        
+        return builder.toString();
     }
 
     public void setListaRutas(DynamicArray<Ruta> listaRutas) {
@@ -177,5 +191,9 @@ public class Estacion implements Comparable<Estacion> {
         this.NUsuarios++;
     }
     
+    @Override
+    public int hashCode(){
+        return this.Nombre.hashCode();
+    }
     
 }

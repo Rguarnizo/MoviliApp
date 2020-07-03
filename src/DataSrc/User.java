@@ -150,4 +150,16 @@ public class User {
                 ", email='" + email + '\n' +
                 ", cedula='" + cedula + '\n';
     }
+    
+    @Override
+    public int hashCode(){
+        //para identificar unicamente a un usuario basta con tener su cédula
+        int p = -1;
+        try{
+            p = Integer.parseInt(this.cedula);
+        } catch ( NumberFormatException ex){
+            //ex.printStackTrace();
+        }
+        return p;
+    }
 }

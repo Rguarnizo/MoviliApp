@@ -15,7 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 
 import java.io.FileReader;
-import java.util.HashMap;
+import DataSrc.DataStructures.Hash.HashMap;
 import java.util.Scanner;
 import org.json.simple.JsonObject;
 
@@ -24,14 +24,14 @@ public class JsonLoadData {
      static void loadDataNecesary() {
         System.out.println("Cargando Datos Necesarios...");
         long timeCargaUsuarios = loadDataUser(DataManipulation.listaUsuariosHM,10000);
-        long timeCargaRutas = loadDataRutas(DataManipulation.listaRutasHM,0);
-        long timeCargaEstaciones = loadDataEstaciones(DataManipulation.listaEstacionesHM,0);
+        long timeCargaRutas = loadDataAll(0);
+        
         System.out.println("Datos cargados con Exito.\n");
         
          System.out.println("El tiempo de carga de las estructuras fue: \n");
          System.out.println("Usuarios HashMap: " + timeCargaUsuarios/1000000 + " milliseg");
-         System.out.println("Rutas HashMap: " + timeCargaRutas/1000000 + " milliseg");
-         System.out.println("Estaciones HashMap: " + timeCargaEstaciones/1000000 + " milliseg" + "\n");
+         System.out.println("Rutas y Estaciones HashMap: " + timeCargaRutas/1000000 + " milliseg");
+         
          
     }
 
@@ -333,23 +333,46 @@ public class JsonLoadData {
                 
                 JSONArray arrayEstacion = (JSONArray) jsonObject.get("Estaciones");
                 for(int j = 0;j<arrayEstacion.size();j++){
-                    Estacion estacion = new Estacion(arrayEstacion.get(j).toString());
+                    Estacion estacion = new Estacion(arrayEstacion.get(j).toString());                       
                     if(!DataManipulation.listaEstacionesHM.containsKey(arrayEstacion.get(j).toString())){
                         DataManipulation.listaEstacionesHM.put(estacion.getNombre(), estacion);
                     }                    
                     rutaPut.getParadas().add(estacion);                            
                 }
-                DataManipulation.listaRutasHM.put(Nombre,rutaPut);                                
+                DataManipulation.listaRutasHM.put(Nombre,rutaPut);
+                DataManipulation.colaPrioridadRuta.insert(rutaPut);
             }
             DataManipulation.listaRutasHM.remove("");
             
             for(int i = 0; i < jsonEstaciones.size();i++){
                 JSONObject jsonObject = (JSONObject) jsonEstaciones.get (i);
-                Estacion estacion = DataManipulation.listaEstacionesHM.get(jsonObject.get("Estaciones").toString());
+                
+                Estacion estacion;
+                if(DataManipulation.listaEstacionesHM.containsKey(jsonObject.get("Estaciones").toString())){
+                estacion = DataManipulation.listaEstacionesHM.get(jsonObject.get("Estaciones").toString());
+                DataManipulation.colaPrioridadEstaciones.insert(estacion);
+                } else {
+                    estacion = new Estacion(jsonObject.get("Estaciones").toString());
+                    DataManipulation.listaEstacionesHM.put(jsonObject.get("Estaciones").toString(), estacion);
+                    DataManipulation.colaPrioridadEstaciones.insert(estacion);
+                }
+                
+                
+                double Longitud = Double.parseDouble(jsonObject.get("Longitud").toString());
+                double Latitud  = Double.parseDouble(jsonObject.get("Latitud").toString());
+                int NAccesos = Integer.parseInt(jsonObject.get("Accesos").toString());
+                int Vagones = Integer.parseInt(jsonObject.get("Vagones").toString());
+                estacion.setLongitude(Longitud);
+                estacion.setLatitude(Latitud);
+                estacion.setNEntradas(NAccesos);
+                estacion.setNvagones(Vagones);
                 
                 JSONArray arrayRutas = (JSONArray) jsonObject.get("Rutas");
                 for(int j = 0;j<arrayRutas.size();j++){
                     Ruta ruta = new Ruta(arrayRutas.get(j).toString());
+                    if(arrayRutas.get(j).toString().equals("")){
+                        continue;
+                    }
                     if(!DataManipulation.listaRutasHM.containsKey(arrayRutas.get(j).toString())){
                         DataManipulation.listaRutasHM.put(arrayRutas.get(j).toString(), ruta);
                     }else{

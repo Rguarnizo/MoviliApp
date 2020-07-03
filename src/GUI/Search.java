@@ -194,7 +194,7 @@ public class Search extends javax.swing.JFrame {
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
         if(DataManipulation.listaEstacionesHM == null){
-        if(BuscarRuta.getText().isEmpty() && BuscarEstacion.getText().isEmpty()){
+        if(BuscarRuta.getText().isEmpty() || BuscarEstacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese la ruta o la estación a buscar");
         } else{
            Ruta ruta = DataManipulation.listaRutasAVL.find(new Ruta(BuscarRuta.getText()));
@@ -217,7 +217,7 @@ public class Search extends javax.swing.JFrame {
            }
         }
         }else {
-            if(BuscarRuta.getText().isEmpty() && BuscarEstacion.getText().isEmpty()){
+            if(BuscarRuta.getText().isEmpty() || BuscarEstacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese la ruta o la estación a buscar");
         } else{
            Ruta ruta = DataManipulation.listaRutasHM.get(BuscarRuta.getText());
