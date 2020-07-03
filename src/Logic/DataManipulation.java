@@ -17,7 +17,7 @@ import DataSrc.DataStructures.Hash.HashMap;
 import DataSrc.DataStructures.Trees.PriorityQueueEstaciones;
 import DataSrc.DataStructures.Trees.RutasPriorityQueue;
 import DataSrc.Estacion;
-import com.csvreader.CsvWriter;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -552,7 +552,7 @@ public class DataManipulation extends Thread {
         FileWriter fw = null;
         
     try {       
-        CsvWriter csvWriter = new CsvWriter(outFile);
+        
         File file = new File(outFile);
         // Si el archivo no existe, se crea!
         if (!file.exists()) {
