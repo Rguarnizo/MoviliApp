@@ -29,14 +29,16 @@ public abstract class Maps extends MapView{
         setOnMapReadyHandler(new MapReadyHandler() {
             @Override
             public void onMapReady(MapStatus ms) {
-                final Map map = getMap();
+                
+                map = getMap();
+                calculateDirection(map,origen, destino);
+                putMarket(origen);
+                putMarket(destino);
+                
                 
                 map.setCenter(new LatLng(4.60971, -74.08175));
                 map.setZoom(10.0);
-                
-                putMarket(origen);
-                putMarket(destino);
-                calculateDirection(origen, destino);
+                                
             }
 
             private void putMarket(Estacion estacion) {
@@ -54,7 +56,7 @@ public abstract class Maps extends MapView{
 
         
         frame.add(this, BorderLayout.CENTER);
-        frame.setSize(700, 500);
+        frame.setSize(375,812);
             
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -90,7 +92,7 @@ public abstract class Maps extends MapView{
                          mark.setIcon(icon);
                          InfoWindow info = new InfoWindow(map);
                          info.setContent("<h3>" + estacion.getNombre() + "</h3>" + "\n" + estacion.listaRutas());
-                         
+                   
                          
                          mark.addEventListener("mouseover", new MapMouseEvent() {
                              @Override
@@ -107,6 +109,8 @@ public abstract class Maps extends MapView{
                              }
                          });
                          
+
+                         
                          mark.addEventListener("click", new MapMouseEvent() {
                              @Override
                              public void onEvent(MouseEvent me) {
@@ -121,8 +125,9 @@ public abstract class Maps extends MapView{
             }
         });
                jFrame.add(this,BorderLayout.CENTER);
-               jFrame.setSize(700,500);
+               jFrame.setSize(375,812);
                jFrame.setUndecorated(false);
+               jFrame.setLocationRelativeTo(null);
                jFrame.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -144,7 +149,7 @@ public abstract class Maps extends MapView{
                jFrame.setVisible(true);
     }
     
-    public Maps(Estacion origen,Estacion destino){
+public Maps(Estacion origen,Estacion destino){
         JFrame jFrame = new JFrame();
         
         setOnMapReadyHandler(new MapReadyHandler() {
@@ -158,7 +163,10 @@ public abstract class Maps extends MapView{
                     
                     
                     
-                    map = view.getMap();
+                    map = getMap();
+                    calculateDirection(map,origen, destino);
+                    putMarket(origen);
+                    putMarket(destino);
                     MapOptions mapOptions = new MapOptions();
                     
                     
@@ -170,9 +178,8 @@ public abstract class Maps extends MapView{
                     map.setCenter(new LatLng(4.60971, -74.08175));
                     map.setZoom(10.0);
                     
-                    putMarket(origen);
-                    putMarket(destino);
-                    calculateDirection(origen, destino);
+                    
+                    
                     
                     
                     
@@ -192,13 +199,14 @@ public abstract class Maps extends MapView{
 
         });
                jFrame.add(this,BorderLayout.CENTER);
-               jFrame.setSize(700,500);
+               jFrame.setSize(375,812);
+               jFrame.setLocationRelativeTo(null);
                jFrame.setVisible(true);
     }
     
-    private void calculateDirection(Estacion origen,Estacion destino) {
+    private void calculateDirection(Map map,Estacion origen,Estacion destino) {
         // Getting the associated map object
-        final Map map = getMap();
+        
         // Creating a directions request
         DirectionsRequest request = new DirectionsRequest();
         // Setting of the origin location to the request

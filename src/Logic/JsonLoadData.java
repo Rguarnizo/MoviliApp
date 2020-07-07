@@ -336,8 +336,9 @@ public class JsonLoadData {
                     Estacion estacion = new Estacion(arrayEstacion.get(j).toString());                       
                     if(!DataManipulation.listaEstacionesHM.containsKey(arrayEstacion.get(j).toString())){
                         DataManipulation.listaEstacionesHM.put(estacion.getNombre(), estacion);
-                    }                    
+                    }
                     rutaPut.getParadas().add(estacion);                            
+                    
                 }
                 DataManipulation.listaRutasHM.put(Nombre,rutaPut);
                 DataManipulation.colaPrioridadRuta.insert(rutaPut);

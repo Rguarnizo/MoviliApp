@@ -97,11 +97,11 @@ public class Estacion implements Comparable<Estacion> {
     public String listaRutas(){
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < listaRutas.getSize();i++){
-            
-            if(i%1 == 0 && i != 0){
+            if(i%2 == 0 && i!= 0){
                 builder.append(listaRutas.get(i).getNombre()).append(" <br>");
+            }else{
+                builder.append(listaRutas.get(i).getNombre()).append("     ");
             }
-            builder.append(listaRutas.get(i).getNombre()).append("     ");
         }
         
         return builder.toString();

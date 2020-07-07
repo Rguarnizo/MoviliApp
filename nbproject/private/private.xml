@@ -5,15 +5,17 @@
         <group>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/TestStructures.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Login.java</file>
+            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/Ruta.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Config.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/Estacion.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Maps.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Travel.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Payment.java</file>
+            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/DataStructures/Array/DynamicArray.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/Logic/DataManipulation.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Worker.java</file>
-            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/DataStructures/Hash/HashMap.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Register.java</file>
+            <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/DataSrc/DataStructures/Hash/HashMap.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Search.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/GUI/Main.java</file>
             <file>file:/C:/Users/Ruben/Documents/NetBeansProjects/MoviliApp/src/Logic/JsonLoadData.java</file>

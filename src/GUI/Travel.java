@@ -166,7 +166,7 @@ public class Travel extends javax.swing.JFrame {
                 options.importPlaces();
                 options.setApiKey("AIzaSyBVi1WKFDMNFu4jsmxD6WXkTYiy8r_JX-U");
                 
-                Maps map = new Maps(options,origen,destino) {};
+                Maps map = new Maps(origen,destino) {} ;
                 
                 
             }else{

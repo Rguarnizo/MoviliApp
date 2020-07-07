@@ -511,11 +511,12 @@ public class DataManipulation extends Thread {
     }
 
     private void AnalisisEstructuraEstacion(HashMap<String, Estacion> listaEstacionesHM) {
+        
         int dataSizes[] = {10000,100000,500000,1000000};
         long insertAll[] = new long[4];
         long insertOne[] = new long[4];
         long searchOne[] = new long[4];
-        long consultAll[] = new long[4]; 
+        long consultAll[] = new long[4];
         
         
         //Inserción De Todos los datos!
@@ -534,7 +535,9 @@ public class DataManipulation extends Thread {
             searchOne[i] = finalTime - initTime;
             
             initTime = System.nanoTime();
-            DataManipulation.listaEstacionesHM.containsKey("NoDeberiaEstarEstaKey");
+            for(Estacion estacion: listaEstacionesHM.valueSet()){
+                
+            }
             finalTime = System.nanoTime();
             consultAll[i] = finalTime - initTime;
             cleanData();
